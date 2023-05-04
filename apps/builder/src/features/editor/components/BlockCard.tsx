@@ -58,7 +58,7 @@ export const BlockCard = (
       )
     case LogicBlockType.TYPEBOT_LINK:
       return (
-        <BlockCardLayout {...props} tooltip="Link and jump to another typebot">
+        <BlockCardLayout {...props} tooltip="Link and jump to another altbot">
           <BlockIcon type={props.type} />
           <BlockLabel type={props.type} />
         </BlockCardLayout>

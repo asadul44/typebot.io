@@ -95,7 +95,7 @@ export const ApiModal = ({
           <Text fontSize="sm" colorScheme="gray">
             Check out the{' '}
             <TextLink
-              href="https://docs.typebot.io/api/send-a-message"
+              href="https://docs.altbot.io/api/send-a-message"
               isExternal
             >
               API reference

@@ -54,7 +54,7 @@ export const GoogleAnalyticsSettings = ({
       <TextInput
         label="Event category:"
         defaultValue={options?.category ?? ''}
-        placeholder="Example: Typebot"
+        placeholder="Example: Altbot"
         onChange={updateCategory}
       />
       <TextInput

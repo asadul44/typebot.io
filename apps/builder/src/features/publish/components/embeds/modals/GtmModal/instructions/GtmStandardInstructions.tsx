@@ -54,7 +54,7 @@ export const GtmStandardInstructions = ({
             }
           />
           <Text>
-            On your web page, you need to have an element on which the typebot
+            On your web page, you need to have an element on which the altbot
             will go:
           </Text>
           <CodeEditor value={elementCode} isReadOnly lang="html" />

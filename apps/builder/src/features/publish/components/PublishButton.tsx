@@ -120,7 +120,7 @@ export const PublishButton = (props: ButtonProps) => {
             colorScheme={'blue'}
             borderLeftRadius={0}
             icon={<ChevronLeftIcon transform="rotate(-90deg)" />}
-            aria-label="Show published typebot menu"
+            aria-label="Show published altbot menu"
             size="sm"
             isDisabled={isPublishing || isSavingLoading}
           />
@@ -132,15 +132,15 @@ export const PublishButton = (props: ButtonProps) => {
             )}
             {!typebot?.isClosed ? (
               <MenuItem onClick={closeTypebot} icon={<LockedIcon />}>
-                Close typebot to new responses
+                Close altbot to new responses
               </MenuItem>
             ) : (
               <MenuItem onClick={openTypebot} icon={<UnlockedIcon />}>
-                Reopen typebot to new responses
+                Reopen altbot to new responses
               </MenuItem>
             )}
             <MenuItem onClick={unpublishTypebot} icon={<CloudOffIcon />}>
-              Unpublish typebot
+              Unpublish altbot
             </MenuItem>
           </MenuList>
         </Menu>

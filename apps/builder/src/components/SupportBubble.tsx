@@ -15,13 +15,13 @@ export const SupportBubble = () => {
 
   return (
     <Bubble
-      apiHost="https://viewer.typebot.io"
-      typebot="typebot-support"
+      apiHost="https://viewer.altbot.io"
+      typebot="altbot-support"
       prefilledVariables={{
         'User ID': user?.id,
         'First name': user?.name?.split(' ')[0] ?? undefined,
         Email: user?.email ?? undefined,
-        'Typebot ID': typebot?.id,
+        'Altbot ID': typebot?.id,
         'Avatar URL': user?.image ?? undefined,
         Plan: planToReadable(workspace?.plan),
       }}

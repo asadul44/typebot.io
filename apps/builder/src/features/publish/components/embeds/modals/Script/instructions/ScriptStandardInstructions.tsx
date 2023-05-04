@@ -39,11 +39,11 @@ ${parseInitStandardCode({
         onUpdateWindowSettings={(settings) => setInputValues({ ...settings })}
       />
       <Text>
-        Make sure you have this <Code>typebot-standard</Code> element in your{' '}
+        Make sure you have this <Code>altbot-standard</Code> element in your{' '}
         <Code>{'<body>'}</Code>:
       </Text>
       <CodeEditor isReadOnly value={standardElementSnippet} lang="html" />
-      <Text>Then, run this script to initialize the typebot:</Text>
+      <Text>Then, run this script to initialize the altbot:</Text>
       <CodeEditor isReadOnly value={scriptSnippet} lang="javascript" />
     </Stack>
   )

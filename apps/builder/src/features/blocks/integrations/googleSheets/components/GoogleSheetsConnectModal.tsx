@@ -39,7 +39,7 @@ export const GoogleSheetConnectModal = ({
         <ModalCloseButton />
         <ModalBody as={Stack} spacing="6">
           <AlertInfo>
-            Typebot needs access to Google Drive in order to list all your
+            Altbot needs access to Google Drive in order to list all your
             spreadsheets. It also needs access to your spreadsheets in order to
             fetch or inject data in it.
           </AlertInfo>

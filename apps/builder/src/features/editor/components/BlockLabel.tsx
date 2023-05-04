@@ -52,7 +52,7 @@ export const BlockLabel = ({ type }: Props): JSX.Element => {
     case LogicBlockType.SCRIPT:
       return <Text>Script</Text>
     case LogicBlockType.TYPEBOT_LINK:
-      return <Text>Typebot</Text>
+      return <Text>Altbot</Text>
     case LogicBlockType.WAIT:
       return <Text>Wait</Text>
     case LogicBlockType.JUMP:

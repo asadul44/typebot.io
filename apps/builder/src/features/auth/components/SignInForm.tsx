@@ -93,7 +93,7 @@ export const SignInForm = ({
       <Text>
         {scopedT('noProvider.preLink')}{' '}
         <TextLink
-          href="https://docs.typebot.io/self-hosting/configuration"
+          href="https://docs.altbot.io/self-hosting/configuration"
           isExternal
         >
           {scopedT('noProvider.link')}

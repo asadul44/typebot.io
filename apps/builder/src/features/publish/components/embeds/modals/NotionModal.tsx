@@ -45,7 +45,7 @@ export const NotionModal = ({
             </ListItem>
             <ListItem>
               <Stack>
-                <Text>Paste your typebot URL</Text>
+                <Text>Paste your altbot URL</Text>
                 <InputGroup size="sm">
                   <Input
                     type={'text'}
