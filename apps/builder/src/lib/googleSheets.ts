@@ -10,7 +10,7 @@ export const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_SECRET,
   `${process.env.NEXTAUTH_URL}/api/credentials/google-sheets/callback`
 )
-
+//google
 export const getAuthenticatedGoogleClient = async (
   userId: string,
   credentialsId: string
