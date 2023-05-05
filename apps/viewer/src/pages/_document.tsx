@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import { Html, Head, Main, NextScript } from 'next/document'
-
+// descripti
 const Document = () => (
   <Html translate="no">
     <Head>
