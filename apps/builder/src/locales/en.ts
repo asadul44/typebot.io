@@ -3,7 +3,7 @@ export default {
   'confirmModal.defaultTitle': 'Are you sure?',
   'dashboard.header.settingsButton.label': 'Settings & Members',
   'dashboard.redirectionMessage': 'You are being redirected...',
-  'dashboard.title': 'My typebots',
+  'dashboard.title': 'My altbots',
   delete: 'Delete',
   errorMessage: 'An error occured',
   cancel: 'Cancel',
@@ -11,7 +11,7 @@ export default {
   upgrade: 'Upgrade',
   downgrade: 'Downgrade',
   'folders.createFolderButton.label': 'Create a folder',
-  'folders.createTypebotButton.label': 'Create a typebot',
+  'folders.createTypebotButton.label': 'Create a altbot',
   'folders.folderButton.deleteConfirmationMessage':
     'Are you sure you want to delete {folderName} folder? (Everything inside will be move to your dashboard)',
   'folders.typebotButton.live': 'Live',

@@ -122,7 +122,7 @@ export const GettingStartedModal = () => {
           </Text>
           <Stack spacing={4}>
             <Heading fontSize="xl">See it in action ({`<`} 5 minutes)</Heading>
-            <iframe
+            {/* <iframe
               width="100%"
               height="315"
               src="https://www.youtube.com/embed/jp3ggg_42-M"
@@ -130,16 +130,16 @@ export const GettingStartedModal = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ borderRadius: '0.5rem', border: 'none' }}
-            />
+            /> */}
             <Accordion allowToggle>
-              <AccordionItem>
-                <AccordionButton>
+              {/* <AccordionItem> */}
+              {/* <AccordionButton>
                   <Box flex="1" textAlign="left">
                     Other videos
                   </Box>
                   <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel py={10} as={Stack} spacing="10">
+                </AccordionButton> */}
+              {/* <AccordionPanel py={10} as={Stack} spacing="10">
                   <iframe
                     width="100%"
                     height="315"
@@ -158,8 +158,8 @@ export const GettingStartedModal = () => {
                     allowFullScreen
                     style={{ borderRadius: '0.5rem', border: 'none' }}
                   />
-                </AccordionPanel>
-              </AccordionItem>
+                </AccordionPanel> */}
+              {/* </AccordionItem> */}
             </Accordion>
           </Stack>
         </ModalBody>

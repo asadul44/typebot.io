@@ -61,10 +61,10 @@ export const GeneralSettingsForm = ({
         align="center"
         onClick={isWorkspaceFreePlan ? onOpen : undefined}
       >
-        <FormLabel htmlFor="branding" mb="0">
+        {/* <FormLabel htmlFor="branding" mb="0">
           Typebot.io branding{' '}
           {isWorkspaceFreePlan && <LockTag plan={Plan.STARTER} />}
-        </FormLabel>
+        </FormLabel> */}
         <Switch
           id="branding"
           isChecked={generalSettings.isBrandingEnabled}

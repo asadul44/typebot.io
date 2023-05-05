@@ -53,13 +53,13 @@ export const Hero = () => {
             >
               <Button
                 as={Link}
-                href="https://app.typebot.io/register"
+                href="https://app.altbot.io/register"
                 colorScheme="orange"
                 size="lg"
                 height="4rem"
                 px="2rem"
               >
-                Create a typebot for free
+                Create a altbot for free
               </Button>
             </Stack>
           </VStack>

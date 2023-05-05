@@ -204,9 +204,9 @@ export const TypebotHeader = () => {
               />
             </Tooltip>
           </HStack>
-          <Button leftIcon={<BuoyIcon />} onClick={handleHelpClick} size="sm">
+          {/* <Button leftIcon={<BuoyIcon />} onClick={handleHelpClick} size="sm">
             Help
-          </Button>
+          </Button> */}
         </HStack>
         {isSavingLoading && (
           <HStack>

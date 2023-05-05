@@ -25,11 +25,11 @@ export const MobileMenu = ({ isOpen }: Props) => (
       </Button>
       <Button
         as={Link}
-        href="https://app.typebot.io/register"
+        href="https://app.altbot.io/register"
         colorScheme="orange"
         fontWeight={700}
       >
-        Create a typebot
+        Create a altbot
       </Button>
       <Button
         as={Link}

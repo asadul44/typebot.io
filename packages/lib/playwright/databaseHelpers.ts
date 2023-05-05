@@ -19,7 +19,7 @@ export const parseTestTypebot = (
   version: '3',
   workspaceId: proWorkspaceId,
   folderId: null,
-  name: 'My typebot',
+  name: 'My altbot',
   theme: defaultTheme,
   settings: defaultSettings,
   publicId: null,

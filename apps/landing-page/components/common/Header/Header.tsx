@@ -96,11 +96,11 @@ export const Header = () => {
           </Button>
           <Button
             as={Link}
-            href="https://app.typebot.io/register"
+            href="https://app.altbot.io/register"
             colorScheme="orange"
             fontWeight={700}
           >
-            Create a typebot
+            Create a altbot
           </Button>
         </HStack>
       </HStack>

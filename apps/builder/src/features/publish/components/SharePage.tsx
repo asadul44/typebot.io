@@ -98,7 +98,7 @@ export const SharePage = () => {
             </Heading>
             {typebot && (
               <EditableUrl
-                hostname={getViewerUrl() ?? 'https://typebot.io'}
+                hostname={getViewerUrl() ?? 'https://altbot.io'}
                 pathname={publicId}
                 isValid={checkIfPublicIdIsValid}
                 onPathnameChange={handlePublicIdChange}

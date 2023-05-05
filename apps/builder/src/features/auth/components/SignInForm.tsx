@@ -76,6 +76,7 @@ export const SignInForm = ({
       email: emailValue,
       redirect: false,
     })
+    console.log(response, 'response')
     if (response?.error) {
       showToast({
         title: scopedT('signinErrorToast.title'),
