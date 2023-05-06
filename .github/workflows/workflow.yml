@@ -38,5 +38,5 @@ jobs:
           tags: |
             thawab/typebot-viewer:v0.1
           build-args: |
-            SCOPE=Viewer
+            SCOPE=viewer
           file: Dockerfile
