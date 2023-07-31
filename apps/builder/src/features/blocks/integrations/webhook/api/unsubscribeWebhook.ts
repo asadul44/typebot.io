@@ -38,7 +38,7 @@ export const unsubscribeWebhook = authenticatedProcedure
     })) as (Pick<Typebot, 'groups'> & { webhooks: Webhook[] }) | null
 
     if (!typebot)
-      throw new TRPCError({ code: 'NOT_FOUND', message: 'Typebot not found' })
+      throw new TRPCError({ code: 'NOT_FOUND', message: 'Altbot not found' })
 
     const webhookBlock = typebot.groups
       .flatMap((g) => g.blocks)

@@ -61,16 +61,16 @@ const AboutPage = () => {
           I&apos;m working hard on making a living from Typebot with a simple
           business model: <br />
           <br /> You can use the tool for free but your forms will contain a
-          &quot;Made with Typebot&quot; small badge that potentially gets people
+          &quot;Made with Altbot&quot; small badge that potentially gets people
           to know about the product. If you want to remove it and also have
           access to other advanced features, you have to subscribe for $39 per
           month.
         </Text>
         <Text>
           If you have any questions, feel free to reach out to me at{' '}
-          <TextLink href={'mailto:baptiste@typebot.io'}>
+          {/* <TextLink href={'mailto:baptiste@typebot.io'}>
             baptiste@typebot.io
-          </TextLink>
+          </TextLink> */}
         </Text>
       </Stack>
       <Footer />

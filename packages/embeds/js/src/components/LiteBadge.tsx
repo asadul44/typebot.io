@@ -40,14 +40,14 @@ export const LiteBadge = (props: Props) => {
   return (
     <a
       ref={liteBadge}
-      href={'https://www.typebot.io/?utm_source=litebadge'}
+      href={'https://www.altbot.io/?utm_source=litebadge'}
       target="_blank"
       rel="noopener noreferrer"
       class="lite-badge"
       id="lite-badge"
     >
       <TypebotLogo />
-      <span>Made with Typebot</span>
+      <span>Made with Altbot</span>
     </a>
   )
 }

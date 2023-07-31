@@ -43,7 +43,7 @@ export const listWebhookBlocks = authenticatedProcedure
       },
     })) as (Pick<Typebot, 'groups'> & { webhooks: Webhook[] }) | null
     if (!typebot)
-      throw new TRPCError({ code: 'NOT_FOUND', message: 'Typebot not found' })
+      throw new TRPCError({ code: 'NOT_FOUND', message: 'Altbot not found' })
 
     const webhookBlocks = (typebot?.groups as Group[]).reduce<
       { id: string; label: string; url: string | undefined }[]
