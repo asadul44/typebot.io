@@ -52,7 +52,12 @@ export const TypebotPageV2 = ({
     VariableWithValue[][]
   >([])
   const [chatStarted, setChatStarted] = useState(false)
-
+  const setRestart = () => {
+    setShowTypebot(false)
+    setTimeout(() => {
+      setShowTypebot(true)
+    }, 50)
+  }
   useEffect(() => {
     setShowTypebot(true)
     const urlParams = new URLSearchParams(location.search)
@@ -139,12 +144,31 @@ export const TypebotPageV2 = ({
     return <ErrorPage error={error} />
   }
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: '90vh' }}>
       <SEO
         url={url}
         typebotName={publishedTypebot.typebot.name}
         metadata={publishedTypebot.settings.metadata}
       />
+      <div>
+        <button
+          style={{
+            backgroundColor: '#FAF8F7',
+            borderRadius: '4px',
+            padding: '14px 14px',
+            width: '100px',
+            marginTop: '12px',
+            marginLeft: '40px',
+            border: 'none',
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            cursor: 'pointer',
+          }}
+          onClick={() => setRestart()}
+        >
+          Restart
+        </button>
+      </div>
       {showTypebot && (
         <TypebotViewer
           typebot={publishedTypebot}

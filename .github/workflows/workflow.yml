@@ -25,7 +25,7 @@ jobs:
           context: .
           push: true
           tags: |
-            thawab/typebot-builder:v1.1.0
+            thawab/typebot-builder:v1.1.1
           build-args: |
             SCOPE=builder
           file: Dockerfile
@@ -36,7 +36,7 @@ jobs:
           context: .
           push: true
           tags: |
-            thawab/typebot-viewer:v1.1.0
+            thawab/typebot-viewer:v1.1.1
           build-args: |
             SCOPE=viewer
           file: Dockerfile
