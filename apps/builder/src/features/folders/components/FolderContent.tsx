@@ -166,7 +166,7 @@ export const FolderContent = ({ folder }: Props) => {
           <Heading as="h1">{folder?.name}</Heading>
         </Skeleton>
         <Stack>
-          <HStack>
+          {/* <HStack>
             {folder && <BackButton id={folder.parentFolderId} />}
             {currentRole !== WorkspaceRole.GUEST && (
               <CreateFolderButton
@@ -174,7 +174,7 @@ export const FolderContent = ({ folder }: Props) => {
                 isLoading={isCreatingFolder || isFolderLoading}
               />
             )}
-          </HStack>
+          </HStack> */}
           <Wrap spacing={4}>
             {currentRole !== WorkspaceRole.GUEST && (
               <CreateBotButton

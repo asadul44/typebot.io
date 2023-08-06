@@ -97,7 +97,7 @@ export const OnboardingModal = ({ totalTypebots }: Props) => {
         zIndex={9999}
         pointerEvents="none"
       />
-      {typebot && (
+      {/* {typebot && (
         <Popup
           typebot={typebot}
           prefilledVariables={{
@@ -110,7 +110,7 @@ export const OnboardingModal = ({ totalTypebots }: Props) => {
           onAnswer={handleNewAnswer}
           onEnd={handleBotEnd}
         />
-      )}
+      )} */}
     </>
   )
 }

@@ -2,6 +2,7 @@ import { Standard } from '@typebot.io/react'
 import { BackgroundType, Typebot } from '@typebot.io/schemas'
 import { useRouter } from 'next/router'
 import { SEO } from './Seo'
+import { useState } from 'react'
 
 export type TypebotPageProps = {
   url: string
@@ -10,7 +11,7 @@ export type TypebotPageProps = {
 
 export const TypebotPageV3 = ({ url, typebot }: TypebotPageProps) => {
   const { asPath, push, query } = useRouter()
-
+  const [showTypebot, setShowTypebot] = useState(true)
   const background = typebot?.theme.general.background
 
   const clearQueryParamsIfNecessary = () => {
@@ -22,7 +23,13 @@ export const TypebotPageV3 = ({ url, typebot }: TypebotPageProps) => {
       return
     push(asPath.split('?')[0], undefined, { shallow: true })
   }
-
+  console.log(url, typebot, ' url, typebot', showTypebot)
+  const setRestart = () => {
+    setShowTypebot(false)
+    setTimeout(() => {
+      setShowTypebot(true)
+    }, 20)
+  }
   return (
     <div
       style={{
@@ -36,6 +43,25 @@ export const TypebotPageV3 = ({ url, typebot }: TypebotPageProps) => {
             : '#fff',
       }}
     >
+      <div>
+        <button
+          style={{
+            backgroundColor: '#FAF8F7',
+            borderRadius: '4px',
+            padding: '14px 14px',
+            width: '100px',
+            marginTop: '12px',
+            marginLeft: '40px',
+            border: 'none',
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            cursor: 'pointer',
+          }}
+          onClick={() => setRestart()}
+        >
+          Restart
+        </button>
+      </div>
       {typebot && (
         <SEO
           url={url}
@@ -43,10 +69,12 @@ export const TypebotPageV3 = ({ url, typebot }: TypebotPageProps) => {
           metadata={typebot.settings.metadata}
         />
       )}
-      <Standard
-        typebot={typebot?.publicId ?? query.publicId?.toString() ?? 'n'}
-        onInit={clearQueryParamsIfNecessary}
-      />
+      {showTypebot && (
+        <Standard
+          typebot={typebot?.publicId ?? query.publicId?.toString() ?? 'n'}
+          onInit={clearQueryParamsIfNecessary}
+        />
+      )}
     </div>
   )
 }
