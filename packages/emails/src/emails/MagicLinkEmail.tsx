@@ -20,9 +20,9 @@ export const MagicLinkEmail = ({ url }: Props) => (
     <Head />
     <MjmlBody width={600}>
       <MjmlSection padding="0">
-        <MjmlColumn>
+        {/* <MjmlColumn>
           <HeroImage src="https://s3.fr-par.scw.cloud/typebot/public/typebots/rxp84mn10va5iqek63enrg99/blocks/yfazs53p6coxe4u3tbbvkl0m" />
-        </MjmlColumn>
+        </MjmlColumn> */}
       </MjmlSection>
       <MjmlSection padding="0 24px" cssClass="smooth">
         <MjmlColumn>
@@ -36,7 +36,7 @@ export const MagicLinkEmail = ({ url }: Props) => (
           </Text>
           <Text>
             Best,
-            <br />- Typebot Team.
+            <br />- Altbot Team.
           </Text>
         </MjmlColumn>
       </MjmlSection>
@@ -50,6 +50,6 @@ export const sendMagicLinkEmail = ({
 }: Pick<SendMailOptions, 'to'> & ComponentProps<typeof MagicLinkEmail>) =>
   sendEmail({
     to,
-    subject: 'Sign in to Typebot',
+    subject: 'Sign in to Altbot',
     html: render(<MagicLinkEmail {...props} />).html,
   })

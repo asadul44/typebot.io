@@ -30,14 +30,14 @@ export const GuestInvitationEmail = ({
     <Head />
     <MjmlBody width={600}>
       <MjmlSection padding="0">
-        <MjmlColumn>
+        {/* <MjmlColumn>
           <HeroImage src="https://typebot.s3.eu-west-3.amazonaws.com/assets/invitation-banner.png" />
-        </MjmlColumn>
+        </MjmlColumn> */}
       </MjmlSection>
       <MjmlSection padding="0 24px" cssClass="smooth">
         <MjmlColumn>
           <Text>
-            You have been invited by {hostEmail} to collaborate on his typebot{' '}
+            You have been invited by {hostEmail} to collaborate on his altbot{' '}
             <strong>{typebotName}</strong>.
           </Text>
           <Text>
@@ -48,7 +48,7 @@ export const GuestInvitationEmail = ({
             Make sure to log in as <i>{guestEmail}</i>.
           </Text>
           <MjmlSpacer height="24px" />
-          <Button link={url}>Go to typebot</Button>
+          <Button link={url}>Go to altbot</Button>
         </MjmlColumn>
       </MjmlSection>
     </MjmlBody>

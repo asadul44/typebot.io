@@ -21,11 +21,11 @@ const createHtmlFile = () => {
     path.resolve(__dirname, 'dist', 'guestInvitation.html'),
     render(
       <GuestInvitationEmail
-        workspaceName={'Typebot'}
+        workspaceName={'Altbot'}
         typebotName={'Lead Generation'}
-        url={'https://app.typebot.io'}
-        hostEmail={'baptiste@typebot.io'}
-        guestEmail={'guest@typebot.io'}
+        url={'https://app.altbot.io'}
+        hostEmail={'baptiste@altbot.io'}
+        guestEmail={'guest@altbot.io'}
       />
     ).html
   )
@@ -33,10 +33,10 @@ const createHtmlFile = () => {
     path.resolve(__dirname, 'dist', 'workspaceMemberInvitation.html'),
     render(
       <WorkspaceMemberInvitation
-        workspaceName={'Typebot'}
-        url={'https://app.typebot.io'}
-        hostEmail={'baptiste@typebot.io'}
-        guestEmail={'guest@typebot.io'}
+        workspaceName={'Altbot'}
+        url={'https://app.altbot.io'}
+        hostEmail={'thawab.hazmi@gmail.com'}
+        guestEmail={'guest@altbot.io'}
       />
     ).html
   )
@@ -45,7 +45,7 @@ const createHtmlFile = () => {
     render(
       <AlmostReachedChatsLimitEmail
         usagePercent={86}
-        url={'https://app.typebot.io'}
+        url={'https://app.altbot.io'}
         chatsLimit={2000}
       />
     ).html
@@ -54,18 +54,18 @@ const createHtmlFile = () => {
     path.resolve(__dirname, 'dist', 'defaultBotNotification.html'),
     render(
       <DefaultBotNotificationEmail
-        resultsUrl={'https://app.typebot.io'}
+        resultsUrl={'https://app.altbot.io'}
         answers={{
           'Group #1': 'Answer #1',
-          Name: 'Baptiste',
-          Email: 'baptiste.arnaud95@gmail.com',
+          Name: 'Thawab',
+          Email: 'thawab.hazmi@gmail.com',
         }}
       />
     ).html
   )
   fs.writeFileSync(
     path.resolve(__dirname, 'dist', 'magicLink.html'),
-    render(<MagicLinkEmail url={'https://app.typebot.io'} />).html
+    render(<MagicLinkEmail url={'https://app.altbot.io'} />).html
   )
 }
 

@@ -28,9 +28,9 @@ export const WorkspaceMemberInvitation = ({
     <Head />
     <MjmlBody width={600}>
       <MjmlSection padding="0">
-        <MjmlColumn>
+        {/* <MjmlColumn>
           <HeroImage src="https://typebot.s3.eu-west-3.amazonaws.com/assets/invitation-banner.png" />
-        </MjmlColumn>
+        </MjmlColumn> */}
       </MjmlSection>
       <MjmlSection padding="0 24px" cssClass="smooth">
         <MjmlColumn>

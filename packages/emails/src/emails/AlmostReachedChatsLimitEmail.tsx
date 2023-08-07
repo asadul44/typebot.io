@@ -38,9 +38,9 @@ export const AlmostReachedChatsLimitEmail = ({
       <Head />
       <MjmlBody width={600}>
         <MjmlSection padding="0">
-          <MjmlColumn>
+          {/* <MjmlColumn>
             <HeroImage src="https://typebot.s3.fr-par.scw.cloud/public/assets/yourBotIsFlyingEmailBanner.png" />
-          </MjmlColumn>
+          </MjmlColumn> */}
         </MjmlSection>
         <MjmlSection padding="0 24px" cssClass="smooth">
           <MjmlColumn>
