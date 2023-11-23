@@ -21,7 +21,6 @@ type StandardElement = HTMLElement & Props
 
 export const Standard = ({ style, className, ...assignableProps }: Props) => {
   const ref = useRef<StandardElement | null>(null)
-
   useEffect(() => {
     ;(async () => {
       await import('@typebot.io/js/dist/web')

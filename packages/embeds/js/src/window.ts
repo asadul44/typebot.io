@@ -12,6 +12,7 @@ import {
 } from './features/commands'
 
 export const initStandard = (props: BotProps & { id?: string }) => {
+  console.log(props, 'props initStandard')
   const standardElement = props.id
     ? document.getElementById(props.id)
     : document.querySelector('typebot-standard')
@@ -62,6 +63,7 @@ export const parseTypebot = () => ({
 })
 
 export const injectTypebotInWindow = (typebot: Typebot) => {
+  console.log(typebot, 'injectTypebotInWindow')
   if (typeof window === 'undefined') return
   window.Typebot = { ...typebot }
 }

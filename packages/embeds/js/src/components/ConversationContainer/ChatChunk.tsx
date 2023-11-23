@@ -23,7 +23,7 @@ type Props = Pick<ChatReply, 'messages' | 'input'> & {
 
 export const ChatChunk = (props: Props) => {
   const [displayedMessageIndex, setDisplayedMessageIndex] = createSignal(0)
-
+  console.log(props, 'props........>')
   onMount(() => {
     if (props.messages.length === 0) {
       props.onAllBubblesDisplayed()

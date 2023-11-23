@@ -46,16 +46,19 @@ type Props = {
 }
 
 export const InputChatBlock = (props: Props) => {
+  console.log(props, 'InputChatBlock')
   const [answer, setAnswer] = createSignal<string>()
 
   const handleSubmit = async ({ label, value }: InputSubmitContent) => {
     setAnswer(label ?? value)
     props.onSubmit(value ?? label)
+    console.log(label, 'label', value, 'value')
   }
 
   const handleSkip = (label: string) => {
-    setAnswer(label)
-    props.onSkip()
+    console.log(label, 'label')
+    // setAnswer(label)
+    // props.onSkip()
   }
 
   return (
@@ -182,7 +185,7 @@ const Input = (props: {
                 </Match>
               </Switch>
             </Match>
-            <Match when={block.options.isMultipleChoice}>
+            {/* <Match when={block.options.isMultipleChoice}>
               <Switch>
                 <Match when={block.options.isSearchable}>
                   <SearchableMultipleChoicesForm
@@ -201,7 +204,7 @@ const Input = (props: {
                   />
                 </Match>
               </Switch>
-            </Match>
+            </Match> */}
           </Switch>
         )}
       </Match>
