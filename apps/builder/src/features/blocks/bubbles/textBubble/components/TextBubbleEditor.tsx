@@ -10,7 +10,7 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Plate, PlateProvider, usePlateEditorRef } from '@udecode/plate-core'
 import { editorStyle, platePlugins } from '@/lib/plate'
-import { BaseEditor, BaseSelection, Transforms } from 'slate'
+import { BaseEditor, BaseSelection, Transforms, Text } from 'slate'
 import { Variable } from '@typebot.io/schemas'
 import { ReactEditor } from 'slate-react'
 import { VariableSearchInput } from '@/components/inputs/VariableSearchInput'
@@ -22,6 +22,7 @@ import { TextEditorToolBar } from './TextEditorToolBar'
 type TextBubbleEditorContentProps = {
   id: string
   textEditorValue: TElement[]
+
   onClose: (newContent: TElement[]) => void
 }
 
@@ -35,10 +36,30 @@ const TextBubbleEditorContent = ({
   const rememberedSelection = useRef<BaseSelection | null>(null)
   const [isVariableDropdownOpen, setIsVariableDropdownOpen] = useState(false)
   const [isFirstFocus, setIsFirstFocus] = useState(true)
-
+  const [color, setColor] = useState('#264653')
+  const [backgroundColor, setBgColor] = useState('#ffffff')
   const textEditorRef = useRef<HTMLDivElement>(null)
-
   const closeEditor = () => onClose(textEditorValue)
+
+  const applyColor = (color: string | any) => {
+    if (!editor.selection) return
+    setColor(color)
+    Transforms.setNodes(
+      editor as unknown as BaseEditor,
+      { color: color } as Partial<Node>,
+      { match: (n) => Text.isText(n), split: true }
+    )
+  }
+
+  const applyBgColor = (backgroundColor: string | any) => {
+    if (!editor.selection) return
+    setBgColor(backgroundColor)
+    Transforms.setNodes(
+      editor as unknown as BaseEditor,
+      { backgroundColor: backgroundColor } as Partial<Node>,
+      { match: (n) => Text.isText(n), split: true }
+    )
+  }
 
   useOutsideClick({
     ref: textEditorRef,
@@ -117,6 +138,10 @@ const TextBubbleEditorContent = ({
     >
       <TextEditorToolBar
         onVariablesButtonClick={() => setIsVariableDropdownOpen(true)}
+        applyBgColor={applyBgColor}
+        applyColor={applyColor}
+        backgroundColor={backgroundColor}
+        color={color}
       />
       <Plate
         id={id}
@@ -173,7 +198,6 @@ export const TextBubbleEditor = ({
   onClose,
 }: TextBubbleEditorProps) => {
   const [textEditorValue, setTextEditorValue] = useState(initialValue)
-
   return (
     <PlateProvider
       id={id}

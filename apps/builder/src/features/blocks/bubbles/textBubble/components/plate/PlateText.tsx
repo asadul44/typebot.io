@@ -3,22 +3,33 @@ export const PlateText = ({
   bold,
   italic,
   underline,
+  color,
+  backgroundColor,
 }: {
   text: string
   bold?: boolean
   italic?: boolean
   underline?: boolean
+  color?: string
+  backgroundColor?: string
 }) => {
   let className = ''
   if (bold) className += 'slate-bold'
   if (italic) className += ' slate-italic'
   if (underline) className += ' slate-underline'
-  if (className)
+
+  let style = {}
+  if (color) style = { ...style, color }
+  if (backgroundColor) style = { ...style, backgroundColor: backgroundColor }
+
+  if (className || color || backgroundColor) {
     return (
-      <span className={className}>
+      <span className={className} style={style}>
         <PlateTextContent text={text} />
       </span>
     )
+  }
+
   return <PlateTextContent text={text} />
 }
 

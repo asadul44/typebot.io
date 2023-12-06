@@ -57,8 +57,8 @@ export const InputChatBlock = (props: Props) => {
 
   const handleSkip = (label: string) => {
     console.log(label, 'label')
-    // setAnswer(label)
-    // props.onSkip()
+    setAnswer(label)
+    props.onSkip()
   }
 
   return (
@@ -185,7 +185,7 @@ const Input = (props: {
                 </Match>
               </Switch>
             </Match>
-            {/* <Match when={block.options.isMultipleChoice}>
+            <Match when={block.options.isMultipleChoice}>
               <Switch>
                 <Match when={block.options.isSearchable}>
                   <SearchableMultipleChoicesForm
@@ -204,7 +204,7 @@ const Input = (props: {
                   />
                 </Match>
               </Switch>
-            </Match> */}
+            </Match>
           </Switch>
         )}
       </Match>

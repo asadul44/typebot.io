@@ -621,3 +621,53 @@ export const SmileIcon = (props: IconProps) => (
     <line x1="15" y1="9" x2="15.01" y2="9"></line>
   </Icon>
 )
+
+export const BgColorPickerIcon = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="0" y="0" width="24" height="24" fill="#F2F2F2" />
+
+    <circle
+      cx="12"
+      cy="12"
+      r="10"
+      fill="#FFFFFF"
+      stroke="#757575"
+      stroke-width="2"
+    />
+
+    <linearGradient
+      id="colorSpectrum"
+      x1="12"
+      y1="0"
+      x2="12"
+      y2="24"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stop-color="#FF0000" />
+      <stop offset="16.66%" stop-color="#FF9900" />
+      <stop offset="33.33%" stop-color="#FFFF00" />
+      <stop offset="50%" stop-color="#00FF00" />
+      <stop offset="66.66%" stop-color="#00FFFF" />
+      <stop offset="83.33%" stop-color="#0000FF" />
+      <stop offset="100%" stop-color="#FF00FF" />
+    </linearGradient>
+    <path
+      d="M12 18a6 6 0 0 1 0-12a6 6 0 0 1 0 12z"
+      fill="url(#colorSpectrum)"
+    />
+
+    <path
+      d="M15 14L11 10L7 14"
+      stroke="#000000"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    <circle cx="11" cy="10" r="2" fill="#000000" />
+  </svg>
+)

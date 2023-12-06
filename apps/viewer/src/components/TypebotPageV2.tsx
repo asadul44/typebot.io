@@ -52,12 +52,12 @@ export const TypebotPageV2 = ({
     VariableWithValue[][]
   >([])
   const [chatStarted, setChatStarted] = useState(false)
-  const setRestart = () => {
-    setShowTypebot(false)
-    setTimeout(() => {
-      setShowTypebot(true)
-    }, 50)
-  }
+  // const setRestart = () => {
+  //   setShowTypebot(false)
+  //   setTimeout(() => {
+  //     setShowTypebot(true)
+  //   }, 50)
+  // }
   useEffect(() => {
     setShowTypebot(true)
     const urlParams = new URLSearchParams(location.search)
@@ -150,7 +150,7 @@ export const TypebotPageV2 = ({
         typebotName={publishedTypebot.typebot.name}
         metadata={publishedTypebot.settings.metadata}
       />
-      <div>
+      {/* <div>
         <button
           style={{
             backgroundColor: '#FAF8F7',
@@ -168,7 +168,7 @@ export const TypebotPageV2 = ({
         >
           Restart
         </button>
-      </div>
+      </div> */}
       {showTypebot && (
         <TypebotViewer
           typebot={publishedTypebot}

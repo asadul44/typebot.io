@@ -20,12 +20,22 @@ import {
   UserIcon,
 } from '@/components/icons'
 
+import { ColorPicker } from './ColorPickerEditor'
+import { useState } from 'react'
 type Props = {
   onVariablesButtonClick: () => void
+  applyColor: (color: string) => void
+  applyBgColor: (backgroundColor: string) => void
+  color?: string
+  backgroundColor?: string
 } & StackProps
 
 export const TextEditorToolBar = ({
   onVariablesButtonClick,
+  applyColor,
+  applyBgColor,
+  color,
+  backgroundColor,
   ...props
 }: Props) => {
   const editor = usePlateEditorRef()
@@ -34,6 +44,8 @@ export const TextEditorToolBar = ({
     e.preventDefault()
     onVariablesButtonClick()
   }
+  const [textColorOpen, setTextColorOpen] = useState(true)
+  const [bgColorOpen, setBgColorOpen] = useState(false)
   return (
     <HStack
       bgColor={useColorModeValue('white', 'gray.850')}
@@ -70,6 +82,20 @@ export const TextEditorToolBar = ({
       </span>
       <span data-testid="link-button">
         <LinkToolbarButton icon={<LinkIcon />} />
+      </span>
+      <span data-testid="color">
+        <ColorPicker
+          onColorChange={applyColor}
+          value={color}
+          isOpen={textColorOpen}
+        />
+      </span>
+      <span data-testid="bg-color">
+        <ColorPicker
+          onColorChange={applyBgColor}
+          value={backgroundColor}
+          isOpen={bgColorOpen}
+        />
       </span>
     </HStack>
   )

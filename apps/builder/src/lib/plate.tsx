@@ -6,11 +6,18 @@ import {
 import { createPlugins } from '@udecode/plate-core'
 import { createLinkPlugin, ELEMENT_LINK } from '@udecode/plate-link'
 import { PlateFloatingLink } from '@udecode/plate-ui-link'
-
-export const editorStyle = (backgroundColor: string): React.CSSProperties => ({
+import {
+  createFontBackgroundColorPlugin,
+  createFontColorPlugin,
+} from '@udecode/plate-font'
+export const editorStyle = (
+  backgroundColor: string,
+  color?: string
+): React.CSSProperties => ({
   flex: 1,
   padding: '1rem',
   backgroundColor,
+  color,
   borderRadius: '0.25rem',
 })
 
@@ -19,6 +26,8 @@ export const platePlugins = createPlugins(
     createBoldPlugin(),
     createItalicPlugin(),
     createUnderlinePlugin(),
+    createFontColorPlugin(),
+    createFontBackgroundColorPlugin(),
     createLinkPlugin({
       renderAfterEditable: PlateFloatingLink,
       options: {

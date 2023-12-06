@@ -3,7 +3,7 @@ name: Build and Push typebot docker image
 on:
   push:
     branches:
-      - main
+      - develop_2
 
 jobs:
   build-and-push:
@@ -25,7 +25,7 @@ jobs:
           context: .
           push: true
           tags: |
-            thawab/typebot-builder:v1.2.2
+            thawab/typebot-builder:v1.2.3
           build-args: |
             SCOPE=builder
           file: Dockerfile
@@ -36,7 +36,7 @@ jobs:
           context: .
           push: true
           tags: |
-            thawab/typebot-viewer:v1.2.2
+            thawab/typebot-viewer:v1.2.3
           build-args: |
             SCOPE=viewer
           file: Dockerfile

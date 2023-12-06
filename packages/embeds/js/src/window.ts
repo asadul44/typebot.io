@@ -63,7 +63,6 @@ export const parseTypebot = () => ({
 })
 
 export const injectTypebotInWindow = (typebot: Typebot) => {
-  console.log(typebot, 'injectTypebotInWindow')
   if (typeof window === 'undefined') return
   window.Typebot = { ...typebot }
 }

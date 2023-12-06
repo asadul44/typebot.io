@@ -23,13 +23,13 @@ export const TypebotPageV3 = ({ url, typebot }: TypebotPageProps) => {
       return
     push(asPath.split('?')[0], undefined, { shallow: true })
   }
-  console.log(url, typebot, ' url, typebot', showTypebot)
-  const setRestart = () => {
-    setShowTypebot(false)
-    setTimeout(() => {
-      setShowTypebot(true)
-    }, 20)
-  }
+  // console.log(url, typebot, ' url, typebot', showTypebot)
+  // const setRestart = () => {
+  //   setShowTypebot(false)
+  //   setTimeout(() => {
+  //     setShowTypebot(true)
+  //   }, 20)
+  // }
   return (
     <div
       style={{
@@ -43,7 +43,7 @@ export const TypebotPageV3 = ({ url, typebot }: TypebotPageProps) => {
             : '#fff',
       }}
     >
-      <div>
+      {/* <div>
         <button
           style={{
             backgroundColor: '#FAF8F7',
@@ -61,7 +61,7 @@ export const TypebotPageV3 = ({ url, typebot }: TypebotPageProps) => {
         >
           Restart
         </button>
-      </div>
+      </div> */}
       {typebot && (
         <SEO
           url={url}
