@@ -63,7 +63,6 @@ export const ColorPicker = ({
             aria-label="pick color"
             size="sm"
             bg="white"
-            _dark={{ bg: 'red.600' }}
             icon={
               <p
                 style={{
