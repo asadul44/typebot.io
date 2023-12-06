@@ -62,7 +62,7 @@ export const ColorPicker = ({
           <IconButton
             aria-label="pick color"
             size="sm"
-            bg="white"
+            _dark={'black.800'}
             icon={
               <p
                 style={{
@@ -79,6 +79,9 @@ export const ColorPicker = ({
             aria-label="pick bg-color"
             size="sm"
             bg="white"
+            color="white"
+            _dark={'orange.800'}
+            isRound={true}
             icon={<BgColorPickerIcon />}
           />
         )}
