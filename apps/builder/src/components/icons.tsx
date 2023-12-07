@@ -638,7 +638,7 @@ export const BgColorPickerIcon = () => (
       r="10"
       fill="#FFFFFF"
       stroke="#757575"
-      stroke-width="2"
+      strokeWidth="2"
     />
 
     <linearGradient
@@ -649,13 +649,13 @@ export const BgColorPickerIcon = () => (
       y2="24"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0%" stop-color="#FF0000" />
-      <stop offset="16.66%" stop-color="#FF9900" />
-      <stop offset="33.33%" stop-color="#FFFF00" />
-      <stop offset="50%" stop-color="#00FF00" />
-      <stop offset="66.66%" stop-color="#00FFFF" />
-      <stop offset="83.33%" stop-color="#0000FF" />
-      <stop offset="100%" stop-color="#FF00FF" />
+      <stop offset="0%" stopColor="#FF0000" />
+      <stop offset="16.66%" stopColor="#FF9900" />
+      <stop offset="33.33%" stopColor="#FFFF00" />
+      <stop offset="50%" stopColor="#00FF00" />
+      <stop offset="66.66%" stopColor="#00FFFF" />
+      <stop offset="83.33%" stopColor="#0000FF" />
+      <stop offset="100%" stopColor="#FF00FF" />
     </linearGradient>
     <path
       d="M12 18a6 6 0 0 1 0-12a6 6 0 0 1 0 12z"
@@ -665,8 +665,8 @@ export const BgColorPickerIcon = () => (
     <path
       d="M15 14L11 10L7 14"
       stroke="#000000"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <circle cx="11" cy="10" r="2" fill="#000000" />
   </svg>

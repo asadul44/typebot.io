@@ -12,6 +12,7 @@ export const PlateText = ({
   underline?: boolean
   color?: string
   backgroundColor?: string
+  elementType: string
 }) => {
   let className = ''
   if (bold) className += 'slate-bold'

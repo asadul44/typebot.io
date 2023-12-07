@@ -21,6 +21,8 @@ import {
 } from '@/components/icons'
 
 import { ColorPicker } from './ColorPickerEditor'
+import HeadingDropDown from './HeadingDropDown'
+
 import { useState } from 'react'
 type Props = {
   onVariablesButtonClick: () => void
@@ -28,14 +30,18 @@ type Props = {
   applyBgColor: (backgroundColor: string) => void
   color?: string
   backgroundColor?: string
+  applyFormat: (type: string) => void
+  textType?: string
 } & StackProps
 
 export const TextEditorToolBar = ({
   onVariablesButtonClick,
   applyColor,
   applyBgColor,
+  applyFormat,
   color,
   backgroundColor,
+  textType,
   ...props
 }: Props) => {
   const editor = usePlateEditorRef()
@@ -96,6 +102,9 @@ export const TextEditorToolBar = ({
           value={backgroundColor}
           isOpen={bgColorOpen}
         />
+      </span>
+      <span data-testid="tag-type">
+        <HeadingDropDown applyFormat={applyFormat} textType={textType} />
       </span>
     </HStack>
   )

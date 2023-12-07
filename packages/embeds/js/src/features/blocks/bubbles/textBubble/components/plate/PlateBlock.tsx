@@ -25,6 +25,20 @@ export const PlateBlock = (props: Props) => (
           </For>
         </a>
       </Match>
+      <Match when={props.element.type === 'h3'}>
+        <a href={props.element.url as string} target="_blank" class="slate-h3">
+          <For each={props.element.children as TDescendant[]}>
+            {(child) => <PlateBlock element={child} />}
+          </For>
+        </a>
+      </Match>
+      <Match when={props.element.type === 'h4'}>
+        <a href={props.element.url as string} target="_blank" class="slate-h4">
+          <For each={props.element.children as TDescendant[]}>
+            {(child) => <PlateBlock element={child} />}
+          </For>
+        </a>
+      </Match>
     </Switch>
   </Show>
 )

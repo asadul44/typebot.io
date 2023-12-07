@@ -10,7 +10,14 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Plate, PlateProvider, usePlateEditorRef } from '@udecode/plate-core'
 import { editorStyle, platePlugins } from '@/lib/plate'
-import { BaseEditor, BaseSelection, Transforms, Text } from 'slate'
+import {
+  BaseEditor,
+  BaseSelection,
+  Editor,
+  Transforms,
+  Text,
+  Element,
+} from 'slate'
 import { Variable } from '@typebot.io/schemas'
 import { ReactEditor } from 'slate-react'
 import { VariableSearchInput } from '@/components/inputs/VariableSearchInput'
@@ -18,6 +25,8 @@ import { colors } from '@/lib/theme'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { selectEditor, TElement } from '@udecode/plate-common'
 import { TextEditorToolBar } from './TextEditorToolBar'
+import { ELEMENT_H4, ELEMENT_H3 } from '@udecode/plate-heading'
+import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph'
 
 type TextBubbleEditorContentProps = {
   id: string
@@ -38,6 +47,7 @@ const TextBubbleEditorContent = ({
   const [isFirstFocus, setIsFirstFocus] = useState(true)
   const [color, setColor] = useState('#264653')
   const [backgroundColor, setBgColor] = useState('#ffffff')
+  const [textType, setTextType] = useState('p')
   const textEditorRef = useRef<HTMLDivElement>(null)
   const closeEditor = () => onClose(textEditorValue)
 
@@ -61,6 +71,32 @@ const TextBubbleEditorContent = ({
     )
   }
 
+  console.log(textEditorValue, 'textEditorValue')
+  // const applyFormat = (format) => {
+  //   if (!editor) return;
+
+  //   const isFormatActive = someNodeType(editor, { type: format });
+
+  //   setNodes(
+  //     editor,
+  //     { type: isFormatActive ? 'paragraph' : format },
+  //     { match: n => Editor.isBlock(editor, n) }
+  //   );
+  // };
+  const applyFormat = (format: string) => {
+    if (!editor) return
+    setTextType(format)
+    const isFormatActive = editor.children.some(
+      (n) => Element.isElement(n) && n.type === format
+    )
+    console.log(format, 'format', isFormatActive)
+    Transforms.setNodes(
+      editor as unknown as BaseEditor,
+      { type: isFormatActive ? ELEMENT_PARAGRAPH : format } as Partial<Node>,
+      { match: (n) => Element.isElement(n) }
+    )
+  }
+
   useOutsideClick({
     ref: textEditorRef,
     handler: closeEditor,
@@ -79,6 +115,24 @@ const TextBubbleEditorContent = ({
       left: selectionBoundingRect.left - relativeRect.left,
     }
   }, [])
+  const updateDropdownValue = () => {
+    console.log('calll calll')
+    if (!editor || !editor.selection) return
+
+    const [match] = Editor.nodes(editor as unknown as BaseEditor, {
+      match: (n) => Element.isElement(n),
+      at: editor.selection,
+      mode: 'highest',
+    })
+
+    if (match) {
+      const [node] = match as [Element, ...any[]]
+      console.log(node, 'node')
+      setTextType(node.type as any)
+    } else {
+      setTextType(ELEMENT_PARAGRAPH)
+    }
+  }
 
   useEffect(() => {
     if (!isVariableDropdownOpen) return
@@ -142,6 +196,8 @@ const TextBubbleEditorContent = ({
         applyColor={applyColor}
         backgroundColor={backgroundColor}
         color={color}
+        applyFormat={applyFormat}
+        textType={textType}
       />
       <Plate
         id={id}
@@ -165,6 +221,7 @@ const TextBubbleEditorContent = ({
           onClick: () => {
             setIsVariableDropdownOpen(false)
           },
+          onMouseDown: updateDropdownValue,
         }}
       />
       <Popover isOpen={isVariableDropdownOpen} isLazy>

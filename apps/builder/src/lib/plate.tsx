@@ -10,6 +10,8 @@ import {
   createFontBackgroundColorPlugin,
   createFontColorPlugin,
 } from '@udecode/plate-font'
+import { createHeadingPlugin } from '@udecode/plate-heading'
+import { createParagraphPlugin } from '@udecode/plate-paragraph'
 export const editorStyle = (
   backgroundColor: string,
   color?: string
@@ -28,6 +30,8 @@ export const platePlugins = createPlugins(
     createUnderlinePlugin(),
     createFontColorPlugin(),
     createFontBackgroundColorPlugin(),
+    createHeadingPlugin(),
+    createParagraphPlugin(),
     createLinkPlugin({
       renderAfterEditable: PlateFloatingLink,
       options: {

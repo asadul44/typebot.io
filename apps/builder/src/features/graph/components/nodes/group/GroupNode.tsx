@@ -205,7 +205,7 @@ const NonMemoizedDraggableGroupNode = ({
               ? previewingBorderColor
               : borderColor
           }
-          w="320px"
+          w="400px"
           transition="border 300ms, box-shadow 200ms"
           pos="absolute"
           style={{
