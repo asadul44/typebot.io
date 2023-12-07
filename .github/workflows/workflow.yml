@@ -3,7 +3,7 @@ name: Build and Push typebot docker image
 on:
   push:
     branches:
-      - develop_2
+      - main
 
 jobs:
   build-and-push:
