@@ -20,8 +20,8 @@ export const PlateText = ({
   if (bold) className += 'slate-bold'
   if (italic) className += ' slate-italic'
   if (underline) className += ' slate-underline'
-  if (elementType === 'h3') className += 'slate-h3'
-  if (elementType === 'h4') className += 'slate-h4'
+  // if (elementType === 'h3') className += 'slate-h3'
+  // if (elementType === 'h4') className += 'slate-h4'
 
   let style = {}
   if (color) style = { ...style, color }

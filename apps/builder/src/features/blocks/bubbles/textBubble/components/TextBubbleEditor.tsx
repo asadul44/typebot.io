@@ -29,7 +29,7 @@ import { TextEditorToolBar } from './TextEditorToolBar'
 
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph'
 interface CustomElement extends BaseElement {
-  type: string // Add the type property
+  type: string
 }
 type TextBubbleEditorContentProps = {
   id: string
@@ -76,11 +76,10 @@ const TextBubbleEditorContent = ({
 
   const applyFormat = (format: string) => {
     if (!editor) return
-    setTextType(format)
     const isFormatActive = editor.children.some(
       (n) => Element.isElement(n) && n.type === format
     )
-    console.log(format, 'format', isFormatActive)
+    setTextType(format)
     Transforms.setNodes(
       editor as unknown as BaseEditor,
       { type: isFormatActive ? ELEMENT_PARAGRAPH : format } as Partial<Node>,
@@ -106,6 +105,7 @@ const TextBubbleEditorContent = ({
       left: selectionBoundingRect.left - relativeRect.left,
     }
   }, [])
+
   const updateDropdownValue = () => {
     if (!editor || !editor.selection) return
 

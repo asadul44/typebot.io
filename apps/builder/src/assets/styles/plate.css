@@ -33,15 +33,13 @@
   min-height: 24px;
 }
 .slate-h3{
-font-weight: 600;
-font-size: 1.25rem;
-line-height: 1.75rem;
-letter-spacing: -0.025em;
+  display: block;
+  font-size: 1.17em;
+  font-weight: bold;
 }
 
 .slate-h4{
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1rem;
-  letter-spacing: -0.050em;
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
   }
