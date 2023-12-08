@@ -17,6 +17,7 @@ import {
   Transforms,
   Text,
   Element,
+  BaseElement,
 } from 'slate'
 import { Variable } from '@typebot.io/schemas'
 import { ReactEditor } from 'slate-react'
@@ -25,9 +26,11 @@ import { colors } from '@/lib/theme'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { selectEditor, TElement } from '@udecode/plate-common'
 import { TextEditorToolBar } from './TextEditorToolBar'
-import { ELEMENT_H4, ELEMENT_H3 } from '@udecode/plate-heading'
-import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph'
 
+import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph'
+interface CustomElement extends BaseElement {
+  type: string // Add the type property
+}
 type TextBubbleEditorContentProps = {
   id: string
   textEditorValue: TElement[]
@@ -51,7 +54,7 @@ const TextBubbleEditorContent = ({
   const textEditorRef = useRef<HTMLDivElement>(null)
   const closeEditor = () => onClose(textEditorValue)
 
-  const applyColor = (color: string | any) => {
+  const applyColor = (color: string) => {
     if (!editor.selection) return
     setColor(color)
     Transforms.setNodes(
@@ -61,7 +64,7 @@ const TextBubbleEditorContent = ({
     )
   }
 
-  const applyBgColor = (backgroundColor: string | any) => {
+  const applyBgColor = (backgroundColor: string) => {
     if (!editor.selection) return
     setBgColor(backgroundColor)
     Transforms.setNodes(
@@ -71,18 +74,6 @@ const TextBubbleEditorContent = ({
     )
   }
 
-  console.log(textEditorValue, 'textEditorValue')
-  // const applyFormat = (format) => {
-  //   if (!editor) return;
-
-  //   const isFormatActive = someNodeType(editor, { type: format });
-
-  //   setNodes(
-  //     editor,
-  //     { type: isFormatActive ? 'paragraph' : format },
-  //     { match: n => Editor.isBlock(editor, n) }
-  //   );
-  // };
   const applyFormat = (format: string) => {
     if (!editor) return
     setTextType(format)
@@ -116,7 +107,6 @@ const TextBubbleEditorContent = ({
     }
   }, [])
   const updateDropdownValue = () => {
-    console.log('calll calll')
     if (!editor || !editor.selection) return
 
     const [match] = Editor.nodes(editor as unknown as BaseEditor, {
@@ -126,9 +116,8 @@ const TextBubbleEditorContent = ({
     })
 
     if (match) {
-      const [node] = match as [Element, ...any[]]
-      console.log(node, 'node')
-      setTextType(node.type as any)
+      const [node] = match as unknown as [CustomElement, ...unknown[]]
+      setTextType(node?.type)
     } else {
       setTextType(ELEMENT_PARAGRAPH)
     }
@@ -221,7 +210,7 @@ const TextBubbleEditorContent = ({
           onClick: () => {
             setIsVariableDropdownOpen(false)
           },
-          onMouseDown: updateDropdownValue,
+          onSelect: updateDropdownValue,
         }}
       />
       <Popover isOpen={isVariableDropdownOpen} isLazy>

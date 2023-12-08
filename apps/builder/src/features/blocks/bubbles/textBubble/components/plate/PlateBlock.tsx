@@ -3,13 +3,14 @@ import { PlateText } from './PlateText'
 
 export const PlateBlock = ({ element }: { element: TElement | TText }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  console.log(element.text, '<=====>', element.type)
+
   if (element.text)
     return (
       <PlateText
         {...(element as any)}
         color={element.color} // Assuming color is stored here
         backgroundColor={element.backgroundColor}
+        elementType={element.type}
       />
     )
   switch (element.type) {
