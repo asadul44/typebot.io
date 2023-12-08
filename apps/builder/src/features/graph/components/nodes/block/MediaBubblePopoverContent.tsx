@@ -59,6 +59,7 @@ export const MediaBubbleContent = ({
     case BubbleBlockType.VIDEO: {
       return (
         <VideoUploadContent
+          fileUploadPath={`typebots/${typebotId}/blocks/${block.id}`}
           content={block.content}
           onSubmit={onContentChange}
         />

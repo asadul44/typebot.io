@@ -5,7 +5,7 @@ import { uploadFiles } from '@typebot.io/lib'
 import { compressFile } from '@/helpers/compressFile'
 
 type UploadButtonProps = {
-  fileType: 'image' | 'audio'
+  fileType: 'image' | 'audio' | 'video'
   filePath: string
   includeFileName?: boolean
   onFileUploaded: (url: string) => void
@@ -47,7 +47,13 @@ export const UploadButton = ({
         id="file-input"
         display="none"
         onChange={handleInputChange}
-        accept={fileType === 'image' ? '.jpg, .jpeg, .png, .gif' : '.mp3, .wav'}
+        accept={
+          fileType === 'image'
+            ? '.jpg, .jpeg, .png, .gif'
+            : fileType === 'audio'
+            ? '.mp3, .wav'
+            : '.mp4, .mov, .avi'
+        }
       />
       <Button
         as="label"
