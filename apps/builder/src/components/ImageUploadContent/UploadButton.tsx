@@ -1,7 +1,7 @@
 import { useToast } from '@/hooks/useToast'
 import { Button, ButtonProps, chakra } from '@chakra-ui/react'
 import { ChangeEvent, useState } from 'react'
-import { uploadFiles } from '@typebot.io/lib'
+import { uploadFiles, convertBytesToMB } from '@typebot.io/lib'
 import { compressFile } from '@/helpers/compressFile'
 
 type UploadButtonProps = {
@@ -11,6 +11,11 @@ type UploadButtonProps = {
   onFileUploaded: (url: string) => void
 } & ButtonProps
 
+const fileTypes = {
+  image: '.jpg, .jpeg, .png, .gif',
+  audio: '.mp3, .wav',
+  video: '.mp4, .mov, .avi',
+}
 export const UploadButton = ({
   fileType,
   filePath,
@@ -24,9 +29,30 @@ export const UploadButton = ({
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target?.files) return
     setIsUploading(true)
+
     const file = e.target.files[0] as File | undefined
-    if (!file)
-      return showToast({ description: 'Could not read file.', status: 'error' })
+    if (!file) {
+      showToast({ description: 'Could not read file.', status: 'error' })
+      setIsUploading(false)
+      return
+    }
+
+    //  size limits (in bytes)
+    const minSize = 1024 * 1024 * 0.1 // 0.1 MB minimum
+    const maxSize = 1024 * 1024 * 40 // 10 MB maximum
+    const sizeInMB: string = convertBytesToMB(file.size).toFixed(2)
+    if (
+      (file.type.startsWith('video/') && file.size < minSize) ||
+      file.size > maxSize
+    ) {
+      showToast({
+        description: `File size should be between 0 MB and 40 MB. your file size is ${sizeInMB}`,
+        status: 'error',
+      })
+      setIsUploading(false)
+      return
+    }
+
     const urls = await uploadFiles({
       files: [
         {
@@ -47,13 +73,7 @@ export const UploadButton = ({
         id="file-input"
         display="none"
         onChange={handleInputChange}
-        accept={
-          fileType === 'image'
-            ? '.jpg, .jpeg, .png, .gif'
-            : fileType === 'audio'
-            ? '.mp3, .wav'
-            : '.mp4, .mov, .avi'
-        }
+        accept={fileTypes[fileType] || fileTypes['image']}
       />
       <Button
         as="label"

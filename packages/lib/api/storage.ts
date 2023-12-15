@@ -7,21 +7,23 @@ type GeneratePresignedUrlProps = {
 }
 
 const tenMB = 10 * 1024 * 1024
+const fortyMB = 40 * 1024 * 1024 // 100 MB
 const tenMinutes = 10 * 60
 
 export const generatePresignedUrl = ({
   filePath,
   fileType,
-  sizeLimit = tenMB,
+  sizeLimit = fileType?.startsWith('video/') ? fortyMB : tenMB,
 }: GeneratePresignedUrlProps): S3.PresignedPost => {
   if (
     !process.env.S3_ENDPOINT ||
     !process.env.S3_ACCESS_KEY ||
     !process.env.S3_SECRET_KEY
-  )
+  ) {
     throw new Error(
       'S3 not properly configured. Missing one of those variables: S3_ENDPOINT, S3_ACCESS_KEY, S3_SECRET_KEY'
     )
+  }
 
   const sslEnabled =
     process.env.S3_SSL && process.env.S3_SSL === 'false' ? false : true
@@ -49,5 +51,6 @@ export const generatePresignedUrl = ({
     Expires: tenMinutes,
     Conditions: [['content-length-range', 0, sizeLimit]],
   })
+
   return presignedUrl
 }

@@ -25,7 +25,7 @@ export const ImportTypebotFromFileButton = ({
     } catch (err) {
       console.error(err)
       showToast({
-        description: "Failed to parse the file. Are you sure it's a typebot?",
+        description: "Failed to parse the file. Are you sure it's a altbot?",
         details: {
           content: JSON.stringify(err, null, 2),
           lang: 'json',

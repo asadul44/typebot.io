@@ -158,7 +158,7 @@ interface Omit {
 
 export const omit: Omit = (obj, ...keys) => {
   const ret = {} as {
-    [K in keyof typeof obj]: typeof obj[K]
+    [K in keyof typeof obj]: (typeof obj)[K]
   }
   let key: keyof typeof obj
   for (key in obj) {
@@ -316,3 +316,7 @@ export const getAtPath = <T>(obj: T, path: string): unknown => {
 
 export const parseGroupTitle = (title: string) =>
   isEmpty(title) ? 'Untitled' : title
+
+export const convertBytesToMB = (bytes: number) => {
+  return bytes / 1024 / 1024
+}

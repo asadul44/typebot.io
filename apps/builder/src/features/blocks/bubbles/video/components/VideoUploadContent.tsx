@@ -19,7 +19,10 @@ export const VideoUploadContent = ({
   fileUploadPath,
 }: Props) => {
   const [currentTab, setCurrentTab] = useState<'link' | 'upload'>('link')
-  const submit = (url: string) => onSubmit({ url })
+  // const submit = (url: string) => {
+  //   console.log(url, 'url..........................sassasa')
+  //   onSubmit({ url })
+  // }
   const handleUrlChange = (url: string) => {
     const info = urlParser.parse(url)
     return isDefined(info) && info.provider && info.id
@@ -31,16 +34,6 @@ export const VideoUploadContent = ({
       : onSubmit({ type: VideoBubbleContentType.URL, url })
   }
   return (
-    // <Stack p="2">
-    //   <TextInput
-    //     placeholder="Paste the video link..."
-    //     defaultValue={content?.url ?? ''}
-    //     onChange={handleUrlChange}
-    //   />
-    //   <Text fontSize="sm" color="gray.400" textAlign="center">
-    //     Works with Youtube, Vimeo and others
-    //   </Text>
-    // </Stack>
     <Stack>
       <HStack>
         <Button
@@ -64,7 +57,7 @@ export const VideoUploadContent = ({
             <UploadButton
               fileType="video"
               filePath={fileUploadPath}
-              onFileUploaded={submit}
+              onFileUploaded={handleUrlChange}
               colorScheme="blue"
             >
               Choose a file
