@@ -12,6 +12,7 @@ import {
 } from '@udecode/plate-font'
 import { createHeadingPlugin } from '@udecode/plate-heading'
 import { createParagraphPlugin } from '@udecode/plate-paragraph'
+import { ELEMENT_H4, ELEMENT_H3 } from '@udecode/plate-heading'
 export const editorStyle = (
   backgroundColor: string,
   color?: string
@@ -56,6 +57,12 @@ export const platePlugins = createPlugins(
         >
           {props.children}
         </a>
+      ),
+      [ELEMENT_H3]: (props) => (
+        <h3 className={props.className}>{props.children}</h3>
+      ),
+      [ELEMENT_H4]: (props) => (
+        <h4 className={props.className}>{props.children}</h4>
       ),
     },
   }
