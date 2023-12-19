@@ -29,14 +29,14 @@ export const TypebotsDropdown = ({
 
   if (isLoading) return <Input value="Loading..." isDisabled />
   if (!typebots || typebots.length === 0)
-    return <Input value="No typebots found" isDisabled />
+    return <Input value="No altbots found" isDisabled />
   return (
     <HStack>
       <Select
         selectedItem={typebotId}
         items={[
           {
-            label: 'Current typebot',
+            label: 'Current altbot',
             value: 'current',
           },
           ...(typebots ?? [])
@@ -54,11 +54,11 @@ export const TypebotsDropdown = ({
             })),
         ]}
         onSelect={onSelect}
-        placeholder={'Select a typebot'}
+        placeholder={'Select a altbot'}
       />
       {typebotId && typebotId !== 'current' && (
         <IconButton
-          aria-label="Navigate to typebot"
+          aria-label="Navigate to altbot"
           icon={<ExternalLinkIcon />}
           as={Link}
           href={`/typebots/${typebotId}/edit?parentId=${query.typebotId}`}

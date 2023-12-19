@@ -2,7 +2,7 @@ import { Button } from '@/components/Button'
 import { InputSubmitContent } from '@/types'
 import { isMobile } from '@/utils/isMobileSignal'
 import type { ChoiceInputBlock } from '@typebot.io/schemas'
-import { For } from 'solid-js'
+import { For, createSignal } from 'solid-js'
 
 type Props = {
   inputIndex: number
@@ -12,8 +12,18 @@ type Props = {
 
 export const Buttons = (props: Props) => {
   // eslint-disable-next-line solid/reactivity
-  const handleClick = (itemIndex: number) => () =>
-    props.onSubmit({ value: props.items[itemIndex].content ?? '' })
+  const [selectedIds, setSelectedIds] = createSignal(new Set<number>())
+
+  const handleClick = (itemIndex: number) => () => {
+    const selectedItem = props.items[itemIndex]
+    const newSelectedIds = new Set(selectedIds())
+    newSelectedIds.add(itemIndex)
+    setSelectedIds(newSelectedIds)
+    props.onSubmit({
+      value: selectedItem.content ?? '',
+      currentBlockId: selectedItem.blockId,
+    })
+  }
 
   return (
     <div class="flex flex-wrap justify-end gap-2">
@@ -24,6 +34,7 @@ export const Buttons = (props: Props) => {
               on:click={handleClick(index())}
               data-itemid={item.id}
               class="w-full"
+              isDisabled={selectedIds().has(index())}
             >
               {item.content}
             </Button>

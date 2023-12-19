@@ -69,7 +69,6 @@ export const continueBotFlow =
       if (reply && !isReplyValid(reply, block)) return parseRetryMessage(block)
 
       formattedReply = formatReply(reply, block.type)
-
       if (!formattedReply && !canSkip(block.type)) {
         return parseRetryMessage(block)
       }
@@ -78,9 +77,7 @@ export const continueBotFlow =
     }
 
     const groupHasMoreBlocks = blockIndex < group.blocks.length - 1
-
     const nextEdgeId = getOutgoingEdgeId(newSessionState)(block, formattedReply)
-
     if (groupHasMoreBlocks && !nextEdgeId) {
       return executeGroup(newSessionState)({
         ...group,

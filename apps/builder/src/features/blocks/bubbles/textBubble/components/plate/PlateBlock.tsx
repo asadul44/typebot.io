@@ -42,7 +42,6 @@ export const PlateBlock = ({ element }: { element: TElement | TText }) => {
       )
     }
     default: {
-      console.log(element.type, 'element.type p', element.children)
       return (
         <div>
           {(element.children as TDescendant[])?.map((child, idx) => (

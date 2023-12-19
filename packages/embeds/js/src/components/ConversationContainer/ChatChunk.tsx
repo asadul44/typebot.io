@@ -16,14 +16,13 @@ type Props = Pick<ChatReply, 'messages' | 'input'> & {
   hideAvatar: boolean
   onNewBubbleDisplayed: (blockId: string) => Promise<void>
   onScrollToBottom: () => void
-  onSubmit: (input: string) => void
+  onSubmit: (input: string, currentBlockId?: string) => void
   onSkip: () => void
   onAllBubblesDisplayed: () => void
 }
 
 export const ChatChunk = (props: Props) => {
   const [displayedMessageIndex, setDisplayedMessageIndex] = createSignal(0)
-  console.log(props, 'props........>')
   onMount(() => {
     if (props.messages.length === 0) {
       props.onAllBubblesDisplayed()

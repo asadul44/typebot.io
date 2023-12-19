@@ -5,7 +5,6 @@ export const PlateText = ({
   underline,
   color,
   backgroundColor,
-  elementType,
 }: {
   text: string
   bold?: boolean
@@ -15,13 +14,10 @@ export const PlateText = ({
   backgroundColor?: string
   elementType?: string
 }) => {
-  console.log(elementType, 'elementtype')
   let className = ''
   if (bold) className += 'slate-bold'
   if (italic) className += ' slate-italic'
   if (underline) className += ' slate-underline'
-  // if (elementType === 'h3') className += 'slate-h3'
-  // if (elementType === 'h4') className += 'slate-h4'
 
   let style = {}
   if (color) style = { ...style, color }

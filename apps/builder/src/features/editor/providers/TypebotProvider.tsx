@@ -152,7 +152,7 @@ export const TypebotProvider = ({
     if (!typebot && isDefined(localTypebot)) setLocalTypebot(undefined)
     if (isFetchingTypebot) return
     if (!typebot) {
-      showToast({ status: 'info', description: "Couldn't find typebot" })
+      showToast({ status: 'info', description: "Couldn't find altbot" })
       push('/typebots')
       return
     }

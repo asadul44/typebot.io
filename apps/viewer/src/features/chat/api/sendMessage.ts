@@ -42,8 +42,30 @@ export const sendMessage = publicProcedure
   .input(sendMessageInputSchema)
   .output(chatReplySchema)
   .query(
-    async ({ input: { sessionId, message, startParams }, ctx: { user } }) => {
+    async ({
+      input: { sessionId, message, startParams, choiceInputId },
+      ctx: { user },
+    }) => {
       const session = sessionId ? await getSession(sessionId) : null
+
+      const newInputGroup =
+        session &&
+        choiceInputId &&
+        session?.state.typebot.groups.find(
+          (group) => group.blocks[0].id === choiceInputId
+        )
+
+      if (newInputGroup && choiceInputId) {
+        await prisma.chatSession.updateMany({
+          where: { id: session.id },
+          data: {
+            state: (session.state.currentBlock = {
+              blockId: choiceInputId,
+              groupId: newInputGroup.id,
+            }),
+          },
+        })
+      }
 
       if (!session) {
         const {
@@ -75,7 +97,6 @@ export const sendMessage = publicProcedure
       } else {
         const { messages, input, clientSideActions, newSessionState, logs } =
           await continueBotFlow(session.state)(message)
-
         await prisma.chatSession.updateMany({
           where: { id: session.id },
           data: {
@@ -84,7 +105,7 @@ export const sendMessage = publicProcedure
         })
 
         const containsSetVariableClientSideAction = clientSideActions?.some(
-          (action) => 'setVariable' in action
+          (action: any) => 'setVariable' in action
         )
 
         if (
@@ -157,7 +178,7 @@ const startSession = async (startParams?: StartParams, userId?: string) => {
     await startBotFlow(initialState, startParams.startGroupId)
 
   const containsSetVariableClientSideAction = clientSideActions?.some(
-    (action) => 'setVariable' in action
+    (action: any) => 'setVariable' in action
   )
 
   if (!input && !containsSetVariableClientSideAction)

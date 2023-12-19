@@ -20,11 +20,7 @@ export const SEO = ({
     <Head key="seo">
       <title>{title ?? typebotName}</title>
       <meta name="robots" content="noindex" />
-      <link
-        rel="icon"
-        type="image/png"
-        href={favIconUrl ?? 'https://viewer.typebot.io/favicon.png'}
-      />
+      <link rel="icon" type="image/png" href={favIconUrl ?? '/favicon.png'} />
       <meta name="title" content={title ?? typebotName} />
       <meta
         name="description"

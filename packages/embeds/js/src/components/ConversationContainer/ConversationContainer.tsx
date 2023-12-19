@@ -64,6 +64,7 @@ export const ConversationContainer = (props: Props) => {
   onMount(() => {
     ;(async () => {
       const initialChunk = chatChunks()[0]
+      console.log('initialChunk', initialChunk)
       if (initialChunk.clientSideActions) {
         const actionsBeforeFirstBubble = initialChunk.clientSideActions.filter(
           (action) => isNotDefined(action.lastBubbleBlockId)
@@ -87,18 +88,24 @@ export const ConversationContainer = (props: Props) => {
     )
   })
 
-  const sendMessage = async (message: string | undefined) => {
+  const sendMessage = async (
+    message: string | undefined,
+    currentInputBlockId?: string
+  ) => {
     setHasError(false)
     const currentBlockId = [...chatChunks()].pop()?.input?.id
+    const choiceInputId: string = currentInputBlockId as string
     if (currentBlockId && props.onAnswer && message)
       props.onAnswer({ message, blockId: currentBlockId })
     const longRequest = setTimeout(() => {
       setIsSending(true)
     }, 1000)
+
     const { data, error } = await sendMessageQuery({
       apiHost: props.context.apiHost,
       sessionId: props.initialChatReply.sessionId,
       message,
+      choiceInputId,
     })
     clearTimeout(longRequest)
     setIsSending(false)

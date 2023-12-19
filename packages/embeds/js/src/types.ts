@@ -3,6 +3,7 @@ import type { ChatReply } from '@typebot.io/schemas'
 export type InputSubmitContent = {
   label?: string
   value: string
+  currentBlockId?: string
 }
 
 export type BotContext = {

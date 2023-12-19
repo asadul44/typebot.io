@@ -25,7 +25,7 @@ import { DateForm } from '@/features/blocks/inputs/date'
 import { RatingForm } from '@/features/blocks/inputs/rating'
 import { FileUploadForm } from '@/features/blocks/inputs/fileUpload'
 import { createSignal, Switch, Match } from 'solid-js'
-import { isNotDefined } from '@typebot.io/lib'
+import { isNotDefined, isChoiceInput } from '@typebot.io/lib'
 import { isMobile } from '@/utils/isMobileSignal'
 import { PaymentForm } from '@/features/blocks/inputs/payment'
 import { MultipleChoicesForm } from '@/features/blocks/inputs/buttons/components/MultipleChoicesForm'
@@ -41,29 +41,33 @@ type Props = {
   context: BotContext
   isInputPrefillEnabled: boolean
   hasError: boolean
-  onSubmit: (answer: string) => void
+  onSubmit: (answer: string, currentBlockId?: string) => void
   onSkip: () => void
 }
 
 export const InputChatBlock = (props: Props) => {
-  console.log(props, 'InputChatBlock')
   const [answer, setAnswer] = createSignal<string>()
-
-  const handleSubmit = async ({ label, value }: InputSubmitContent) => {
-    setAnswer(label ?? value)
-    props.onSubmit(value ?? label)
-    console.log(label, 'label', value, 'value')
+  const handleSubmit = async ({
+    label,
+    value,
+    currentBlockId,
+  }: InputSubmitContent) => {
+    if (!isChoiceInput(props.block)) {
+      setAnswer(label ?? value)
+    }
+    props.onSubmit(value ?? label, currentBlockId)
   }
 
   const handleSkip = (label: string) => {
-    console.log(label, 'label')
-    setAnswer(label)
+    if (!isChoiceInput(props.block)) {
+      setAnswer(label)
+    }
     props.onSkip()
   }
 
   return (
     <Switch>
-      <Match when={answer() && !props.hasError}>
+      <Match when={answer() && !props.hasError && !isChoiceInput(props.block)}>
         <GuestBubble
           message={answer() as string}
           showAvatar={props.guestAvatar?.isEnabled ?? false}

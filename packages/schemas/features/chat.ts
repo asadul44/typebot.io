@@ -178,6 +178,7 @@ export const sendMessageInputSchema = z.object({
       'Session ID that you get from the initial chat request to a bot. If not provided, it will create a new session.'
     ),
   startParams: startParamsSchema.optional(),
+  choiceInputId: z.string().optional(),
 })
 
 const runtimeOptionsSchema = paymentInputRuntimeOptionsSchema.optional()
@@ -245,6 +246,7 @@ export const chatReplySchema = z.object({
   resultId: z.string().optional(),
   dynamicTheme: dynamicThemeSchema.optional(),
   logs: z.array(replyLogSchema).optional(),
+  choiceInputId: z.string().optional(),
 })
 
 export type ChatSession = z.infer<typeof chatSessionSchema>
