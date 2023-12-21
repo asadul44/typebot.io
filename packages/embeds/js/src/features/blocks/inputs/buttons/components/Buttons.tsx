@@ -34,7 +34,7 @@ export const Buttons = (props: Props) => {
               on:click={handleClick(index())}
               data-itemid={item.id}
               class="w-full"
-              isDisabled={selectedIds().has(index())}
+              variant={selectedIds().has(index()) ? undefined : 'primary'}
             >
               {item.content}
             </Button>

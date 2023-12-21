@@ -32,6 +32,10 @@
   /* Phone input */
   --PhoneInputCountryFlag-borderColor: transparent;
   --PhoneInput-color--focus: transparent;
+
+  --primary-button-bg-color: #749bf7;
+  --primary-button-bg-color-rgb: 0, 66, 218;
+  --primary-button-color: #ffffff;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -308,4 +312,12 @@ textarea {
   display: block;
   font-size: 1em;
   font-weight: bold;
+  }
+
+  .primary-button{
+    color: var(--primary-button-color);
+    background-color: var(--primary-button-bg-color);
+    border: 1px solid var(--primary-button-bg-color);
+    border-radius: var(--typebot-border-radius);
+    transition: all 0.3s ease;
   }
