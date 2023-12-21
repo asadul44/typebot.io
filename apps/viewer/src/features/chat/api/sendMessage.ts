@@ -15,6 +15,7 @@ import {
   Typebot,
   Variable,
   VariableWithValue,
+  InputBlockType,
 } from '@typebot.io/schemas'
 import {
   continueBotFlow,
@@ -47,26 +48,6 @@ export const sendMessage = publicProcedure
       ctx: { user },
     }) => {
       const session = sessionId ? await getSession(sessionId) : null
-
-      const newInputGroup =
-        session &&
-        choiceInputId &&
-        session?.state.typebot.groups.find(
-          (group) => group.blocks[0].id === choiceInputId
-        )
-
-      if (newInputGroup && choiceInputId) {
-        await prisma.chatSession.updateMany({
-          where: { id: session.id },
-          data: {
-            state: (session.state.currentBlock = {
-              blockId: choiceInputId,
-              groupId: newInputGroup.id,
-            }),
-          },
-        })
-      }
-
       if (!session) {
         const {
           sessionId,
@@ -95,6 +76,21 @@ export const sendMessage = publicProcedure
           clientSideActions,
         }
       } else {
+        const newInputGroup = findChoiceInputGroup(
+          session?.state,
+          choiceInputId
+        )
+        if (newInputGroup?.id && choiceInputId) {
+          await prisma.chatSession.update({
+            where: { id: sessionId },
+            data: {
+              state: (session.state.currentBlock = {
+                groupId: newInputGroup?.groupId,
+                blockId: choiceInputId,
+              }),
+            },
+          })
+        }
         const { messages, input, clientSideActions, newSessionState, logs } =
           await continueBotFlow(session.state)(message)
         await prisma.chatSession.updateMany({
@@ -403,4 +399,24 @@ const parseDynamicThemeReply = (
       state.dynamicTheme.guestAvatarUrl
     ),
   }
+}
+const findChoiceInputGroup = (
+  state: SessionState | undefined,
+  choiceInputId: string | unknown
+) => {
+  if (!state || !choiceInputId) {
+    return null
+  }
+
+  for (const group of state.typebot.groups) {
+    const choiceInputBlock = group.blocks.find(
+      (block) =>
+        block.type === InputBlockType.CHOICE && block.id === choiceInputId
+    )
+    if (choiceInputBlock) {
+      return choiceInputBlock
+    }
+  }
+
+  return null
 }
