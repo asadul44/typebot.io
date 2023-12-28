@@ -1,13 +1,17 @@
-import type { ChatReply, Theme } from '@typebot.io/schemas'
+import {
+  ChoiceInputBlock,
+  type ChatReply,
+  type Theme,
+} from '@typebot.io/schemas'
 import { createEffect, createSignal, For, onMount, Show } from 'solid-js'
 import { sendMessageQuery } from '@/queries/sendMessageQuery'
 import { ChatChunk } from './ChatChunk'
 import { BotContext, InitialChatReply, OutgoingLog } from '@/types'
-import { isNotDefined } from '@typebot.io/lib'
+import { isNotDefined, isChoiceInput } from '@typebot.io/lib'
 import { executeClientSideAction } from '@/utils/executeClientSideActions'
 import { LoadingChunk } from './LoadingChunk'
 import { PopupBlockedToast } from './PopupBlockedToast'
-
+import { InputBlockType } from '@typebot.io/schemas/features/blocks/inputs/enums'
 const parseDynamicTheme = (
   initialTheme: Theme,
   dynamicTheme: ChatReply['dynamicTheme']
@@ -64,7 +68,6 @@ export const ConversationContainer = (props: Props) => {
   onMount(() => {
     ;(async () => {
       const initialChunk = chatChunks()[0]
-      console.log('initialChunk', initialChunk)
       if (initialChunk.clientSideActions) {
         const actionsBeforeFirstBubble = initialChunk.clientSideActions.filter(
           (action) => isNotDefined(action.lastBubbleBlockId)
@@ -99,7 +102,7 @@ export const ConversationContainer = (props: Props) => {
       props.onAnswer({ message, blockId: currentBlockId })
     const longRequest = setTimeout(() => {
       setIsSending(true)
-    }, 1000)
+    }, 100)
 
     const { data, error } = await sendMessageQuery({
       apiHost: props.context.apiHost,
@@ -142,14 +145,22 @@ export const ConversationContainer = (props: Props) => {
           setBlockedPopupUrl(response.blockedPopupUrl)
       }
     }
-    setChatChunks((displayedChunks) => [
-      ...displayedChunks,
-      {
-        input: data.input,
-        messages: data.messages,
-        clientSideActions: data.clientSideActions,
-      },
-    ])
+    const currentChunk = chatChunks()
+    const newChunk = {
+      input: data.input,
+      messages: data.messages,
+      clientSideActions: data.clientSideActions,
+    }
+    const matchingId = choiceInputId ?? currentBlockId
+    const matchingIndex = currentChunk.findIndex(
+      (chunk) => chunk.input?.id === matchingId
+    )
+    const filteredChunks =
+      matchingIndex >= 0
+        ? currentChunk.slice(0, matchingIndex + 1)
+        : [...currentChunk]
+
+    setChatChunks([...filteredChunks, newChunk])
   }
 
   const autoScrollToBottom = () => {
@@ -237,3 +248,8 @@ type BottomSpacerProps = {
 const BottomSpacer = (props: BottomSpacerProps) => {
   return <div ref={props.ref} class="w-full h-32 flex-shrink-0" />
 }
+
+const isButtonsBlock = (
+  block: ChatReply['input']
+): ChoiceInputBlock | undefined =>
+  block?.type === InputBlockType.CHOICE ? block : undefined

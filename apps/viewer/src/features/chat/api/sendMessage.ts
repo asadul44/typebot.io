@@ -409,7 +409,13 @@ const findChoiceInputGroup = (
   }
 
   for (const group of state.typebot.groups) {
-    const choiceInputBlock = group.blocks.find(
+    if (!group) {
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'Current block not found',
+      })
+    }
+    const choiceInputBlock = group?.blocks.find(
       (block) =>
         block.type === InputBlockType.CHOICE && block.id === choiceInputId
     )
