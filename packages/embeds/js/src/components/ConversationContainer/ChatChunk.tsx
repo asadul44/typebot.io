@@ -85,6 +85,7 @@ export const ChatChunk = (props: Props) => {
       {props.input && displayedMessageIndex() === props.messages.length && (
         <InputChatBlock
           block={props.input}
+          option={props.input?.options as any}
           inputIndex={props.inputIndex}
           onSubmit={props.onSubmit}
           onSkip={props.onSkip}

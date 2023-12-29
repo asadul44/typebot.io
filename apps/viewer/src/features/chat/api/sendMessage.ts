@@ -76,21 +76,25 @@ export const sendMessage = publicProcedure
           clientSideActions,
         }
       } else {
-        const newInputGroup = findChoiceInputGroup(
-          session?.state,
-          choiceInputId
-        )
-        if (newInputGroup?.id && choiceInputId) {
-          await prisma.chatSession.update({
-            where: { id: sessionId },
-            data: {
-              state: (session.state.currentBlock = {
-                groupId: newInputGroup?.groupId,
-                blockId: choiceInputId,
-              }),
-            },
-          })
+        if (choiceInputId) {
+          const newInputGroup = findChoiceInputGroup(
+            session?.state,
+            choiceInputId
+          )
+
+          if (newInputGroup?.id && newInputGroup?.groupId) {
+            await prisma.chatSession.update({
+              where: { id: sessionId },
+              data: {
+                state: (session.state.currentBlock = {
+                  groupId: newInputGroup?.groupId,
+                  blockId: choiceInputId,
+                }),
+              },
+            })
+          }
         }
+
         const { messages, input, clientSideActions, newSessionState, logs } =
           await continueBotFlow(session.state)(message)
         await prisma.chatSession.updateMany({
@@ -408,13 +412,14 @@ const findChoiceInputGroup = (
     return null
   }
 
+  if (!state.typebot || !state.typebot.groups) {
+    console.log('Typebot or Typebot groups are undefined')
+    throw new TRPCError({
+      code: 'INTERNAL_SERVER_ERROR',
+      message: 'Current groups not found',
+    })
+  }
   for (const group of state.typebot.groups) {
-    if (!group) {
-      throw new TRPCError({
-        code: 'INTERNAL_SERVER_ERROR',
-        message: 'Current block not found',
-      })
-    }
     const choiceInputBlock = group?.blocks.find(
       (block) =>
         block.type === InputBlockType.CHOICE && block.id === choiceInputId

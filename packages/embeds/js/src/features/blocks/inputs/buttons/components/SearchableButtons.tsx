@@ -14,14 +14,22 @@ type Props = {
 export const SearchableButtons = (props: Props) => {
   let inputRef: HTMLInputElement | undefined
   const [filteredItems, setFilteredItems] = createSignal(props.defaultItems)
-
+  const [selectedIds, setSelectedIds] = createSignal(new Set<number>())
   onMount(() => {
     if (!isMobile() && inputRef) inputRef.focus()
   })
 
   // eslint-disable-next-line solid/reactivity
-  const handleClick = (itemIndex: number) => () =>
-    props.onSubmit({ value: filteredItems()[itemIndex].content ?? '' })
+  const handleClick = (itemIndex: number) => () => {
+    const selectedItem = filteredItems()[itemIndex]
+    const newSelectedIds = new Set(selectedIds())
+    newSelectedIds.add(itemIndex)
+    setSelectedIds(newSelectedIds)
+    props.onSubmit({
+      value: selectedItem.content ?? '',
+      currentBlockId: selectedItem.blockId,
+    })
+  }
 
   const filterItems = (inputValue: string) => {
     setFilteredItems(
@@ -50,6 +58,7 @@ export const SearchableButtons = (props: Props) => {
                 on:click={handleClick(index())}
                 data-itemid={item.id}
                 class="w-full"
+                variant={selectedIds().has(index()) ? undefined : 'primary'}
               >
                 {item.content}
               </Button>

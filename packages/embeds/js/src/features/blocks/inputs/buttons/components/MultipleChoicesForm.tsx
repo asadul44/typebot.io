@@ -30,12 +30,14 @@ export const MultipleChoicesForm = (props: Props) => {
     }
   }
 
-  const handleSubmit = () =>
+  const handleSubmit = (event: Event) => {
+    event.preventDefault()
     props.onSubmit({
       value: selectedIndices()
         .map((itemIndex) => props.items[itemIndex].content)
         .join(', '),
     })
+  }
 
   return (
     <form class="flex flex-col items-end gap-2" onSubmit={handleSubmit}>

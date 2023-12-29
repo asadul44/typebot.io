@@ -13,7 +13,7 @@ export const Button = (props: Props) => {
   const [local, buttonProps] = splitProps(props, ['disabled', 'class'])
 
   const getButtonClass = () => {
-    switch (props.variant) {
+    switch (props?.variant) {
       case 'primary':
         return 'primary-button'
       case 'secondary':

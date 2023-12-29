@@ -33,14 +33,15 @@ export const SearchableMultipleChoicesForm = (props: Props) => {
     }
   }
 
-  const handleSubmit = () =>
+  const handleSubmit = (event: Event) => {
+    event.preventDefault()
     props.onSubmit({
       value: props.defaultItems
         .filter((item) => selectedItemIds().includes(item.id))
         .map((item) => item.content)
         .join(', '),
     })
-
+  }
   const filterItems = (inputValue: string) => {
     setFilteredItems(
       props.defaultItems.filter((item) =>

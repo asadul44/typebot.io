@@ -1,3 +1,4 @@
+/* eslint-disable solid/reactivity */
 import type {
   ChatReply,
   ChoiceInputBlock,
@@ -43,16 +44,30 @@ type Props = {
   hasError: boolean
   onSubmit: (answer: string, currentBlockId?: string) => void
   onSkip: () => void
+  option: ChoiceInputBlock['options']
 }
 
 export const InputChatBlock = (props: Props) => {
   const [answer, setAnswer] = createSignal<string>()
+
+  const isMultipleChoice = props.option?.isMultipleChoice as boolean
+  const isSearchable = props.option?.isSearchable
+
   const handleSubmit = async ({
     label,
     value,
     currentBlockId,
   }: InputSubmitContent) => {
-    if (!isChoiceInput(props.block)) {
+    // Handling for different input types
+    if (isChoiceInput(props.block)) {
+      if (isMultipleChoice) {
+        setAnswer(label ?? value)
+      } else if (isSearchable) {
+        setAnswer()
+      } else {
+        setAnswer()
+      }
+    } else {
       setAnswer(label ?? value)
     }
     props.onSubmit(value ?? label, currentBlockId)
@@ -67,7 +82,7 @@ export const InputChatBlock = (props: Props) => {
 
   return (
     <Switch>
-      <Match when={answer() && !props.hasError && !isChoiceInput(props.block)}>
+      <Match when={answer() && !props.hasError}>
         <GuestBubble
           message={answer() as string}
           showAvatar={props.guestAvatar?.isEnabled ?? false}
