@@ -81,7 +81,7 @@ export const TemplatesModal = ({ isOpen, onClose, onTypebotChoose }: Props) => {
             className="hide-scrollbar"
           >
             <Stack spacing={5}>
-              <Stack spacing={2}>
+              {/* <Stack spacing={2}>
                 <Text
                   fontSize="xs"
                   fontWeight="semibold"
@@ -116,7 +116,7 @@ export const TemplatesModal = ({ isOpen, onClose, onTypebotChoose }: Props) => {
                       </HStack>
                     </Button>
                   ))}
-              </Stack>
+              </Stack> */}
               <Stack spacing={2}>
                 <Text
                   fontSize="xs"
@@ -124,7 +124,7 @@ export const TemplatesModal = ({ isOpen, onClose, onTypebotChoose }: Props) => {
                   pl="1"
                   color="gray.500"
                 >
-                  Product
+                  Default template
                 </Text>
                 {templates
                   .filter((template) => template.category === 'product')
@@ -153,7 +153,7 @@ export const TemplatesModal = ({ isOpen, onClose, onTypebotChoose }: Props) => {
                     </Button>
                   ))}
               </Stack>
-              <Stack spacing={2}>
+              {/* <Stack spacing={2}>
                 <Text
                   fontSize="xs"
                   fontWeight="semibold"
@@ -188,7 +188,7 @@ export const TemplatesModal = ({ isOpen, onClose, onTypebotChoose }: Props) => {
                       </HStack>
                     </Button>
                   ))}
-              </Stack>
+              </Stack> */}
             </Stack>
           </Stack>
           <Stack

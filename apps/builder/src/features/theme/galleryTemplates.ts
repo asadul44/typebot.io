@@ -4,7 +4,7 @@ export const galleryTemplates: Pick<ThemeTemplate, 'id' | 'name' | 'theme'>[] =
   [
     {
       id: 'typebot-light',
-      name: 'Typebot Light',
+      name: 'Altbot Light',
       theme: {
         chat: {
           inputs: {
@@ -27,7 +27,7 @@ export const galleryTemplates: Pick<ThemeTemplate, 'id' | 'name' | 'theme'>[] =
     },
     {
       id: 'typebot-dark',
-      name: 'Typebot Dark',
+      name: 'Altbot Dark',
       theme: {
         chat: {
           inputs: {
