@@ -27,12 +27,12 @@ import { PhoneInputIcon } from '@/features/blocks/inputs/phone/components/PhoneI
 import { RatingInputIcon } from '@/features/blocks/inputs/rating/components/RatingInputIcon'
 import { TextInputIcon } from '@/features/blocks/inputs/textInput/components/TextInputIcon'
 import { UrlInputIcon } from '@/features/blocks/inputs/url/components/UrlInputIcon'
-import { ChatwootLogo } from '@/features/blocks/integrations/chatwoot/components/ChatwootLogo'
-import { GoogleAnalyticsLogo } from '@/features/blocks/integrations/googleAnalytics/components/GoogleAnalyticsLogo'
-import { GoogleSheetsLogo } from '@/features/blocks/integrations/googleSheets/components/GoogleSheetsLogo'
-import { MakeComLogo } from '@/features/blocks/integrations/makeCom/components/MakeComLogo'
-import { PabblyConnectLogo } from '@/features/blocks/integrations/pabbly/components/PabblyConnectLogo'
-import { ZapierLogo } from '@/features/blocks/integrations/zapier/components/ZapierLogo'
+// import { ChatwootLogo } from '@/features/blocks/integrations/chatwoot/components/ChatwootLogo'
+// import { GoogleAnalyticsLogo } from '@/features/blocks/integrations/googleAnalytics/components/GoogleAnalyticsLogo'
+// import { GoogleSheetsLogo } from '@/features/blocks/integrations/googleSheets/components/GoogleSheetsLogo'
+// import { MakeComLogo } from '@/features/blocks/integrations/makeCom/components/MakeComLogo'
+// import { PabblyConnectLogo } from '@/features/blocks/integrations/pabbly/components/PabblyConnectLogo'
+// import { ZapierLogo } from '@/features/blocks/integrations/zapier/components/ZapierLogo'
 import { ConditionIcon } from '@/features/blocks/logic/condition/components/ConditionIcon'
 import { RedirectIcon } from '@/features/blocks/logic/redirect/components/RedirectIcon'
 import { SetVariableIcon } from '@/features/blocks/logic/setVariable/components/SetVariableIcon'
@@ -94,22 +94,22 @@ export const BlockIcon = ({ type, ...props }: BlockIconProps): JSX.Element => {
       return <TypebotLinkIcon color={purple} {...props} />
     case LogicBlockType.AB_TEST:
       return <AbTestIcon color={purple} {...props} />
-    case IntegrationBlockType.GOOGLE_SHEETS:
-      return <GoogleSheetsLogo {...props} />
-    case IntegrationBlockType.GOOGLE_ANALYTICS:
-      return <GoogleAnalyticsLogo {...props} />
+    // case IntegrationBlockType.GOOGLE_SHEETS:
+    //   return <GoogleSheetsLogo {...props} />
+    // case IntegrationBlockType.GOOGLE_ANALYTICS:
+    //   return <GoogleAnalyticsLogo {...props} />
     case IntegrationBlockType.WEBHOOK:
       return <WebhookIcon {...props} />
-    case IntegrationBlockType.ZAPIER:
-      return <ZapierLogo {...props} />
-    case IntegrationBlockType.MAKE_COM:
-      return <MakeComLogo {...props} />
-    case IntegrationBlockType.PABBLY_CONNECT:
-      return <PabblyConnectLogo {...props} />
-    case IntegrationBlockType.EMAIL:
-      return <SendEmailIcon {...props} />
-    case IntegrationBlockType.CHATWOOT:
-      return <ChatwootLogo {...props} />
+    // case IntegrationBlockType.ZAPIER:
+    //   return <ZapierLogo {...props} />
+    // case IntegrationBlockType.MAKE_COM:
+    //   return <MakeComLogo {...props} />
+    // case IntegrationBlockType.PABBLY_CONNECT:
+    //   return <PabblyConnectLogo {...props} />
+    // case IntegrationBlockType.EMAIL:
+    //   return <SendEmailIcon {...props} />
+    // case IntegrationBlockType.CHATWOOT:
+    //   return <ChatwootLogo {...props} />
     case IntegrationBlockType.OPEN_AI:
       return <OpenAILogo fill={openAIColor} {...props} />
     case 'start':

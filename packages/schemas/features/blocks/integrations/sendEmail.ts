@@ -17,7 +17,7 @@ export const sendEmailOptionsSchema = z.object({
 
 export const sendEmailBlockSchema = blockBaseSchema.merge(
   z.object({
-    type: z.enum([IntegrationBlockType.EMAIL]),
+    // type: z.enum([IntegrationBlockType.EMAIL]),
     options: sendEmailOptionsSchema,
   })
 )

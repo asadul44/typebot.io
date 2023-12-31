@@ -104,9 +104,9 @@ export const isIntegrationBlock = (block: Block): block is IntegrationBlock =>
 export const isWebhookBlock = (block: Block): block is WebhookBlock =>
   [
     IntegrationBlockType.WEBHOOK,
-    IntegrationBlockType.PABBLY_CONNECT,
-    IntegrationBlockType.ZAPIER,
-    IntegrationBlockType.MAKE_COM,
+    // IntegrationBlockType.PABBLY_CONNECT,
+    // IntegrationBlockType.ZAPIER,
+    // IntegrationBlockType.MAKE_COM,
   ].includes(block.type as IntegrationBlockType)
 
 export const isBubbleBlockType = (type: BlockType): type is BubbleBlockType =>
@@ -125,9 +125,9 @@ export const blockTypeHasWebhook = (
 ): type is IntegrationBlockType.WEBHOOK =>
   Object.values([
     IntegrationBlockType.WEBHOOK,
-    IntegrationBlockType.ZAPIER,
-    IntegrationBlockType.MAKE_COM,
-    IntegrationBlockType.PABBLY_CONNECT,
+    // IntegrationBlockType.ZAPIER,
+    // IntegrationBlockType.MAKE_COM,
+    // IntegrationBlockType.PABBLY_CONNECT,
   ] as string[]).includes(type)
 
 export const blockTypeHasItems = (

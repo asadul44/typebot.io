@@ -5,7 +5,7 @@ import { webhookOptionsSchema } from './webhook'
 
 export const makeComBlockSchema = blockBaseSchema.merge(
   z.object({
-    type: z.enum([IntegrationBlockType.MAKE_COM]),
+    // type: z.enum([IntegrationBlockType.MAKE_COM]),
     options: webhookOptionsSchema,
     webhookId: z.string(),
   })

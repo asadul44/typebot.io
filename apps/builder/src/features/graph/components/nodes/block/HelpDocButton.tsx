@@ -62,18 +62,18 @@ const getHelpDocUrl = (blockType: BlockWithOptions['type']): string | null => {
       return 'https://docs.altbot.io/editor/blocks/inputs/rating'
     case InputBlockType.FILE:
       return 'https://docs.altbot.io/editor/blocks/inputs/file-upload'
-    case IntegrationBlockType.EMAIL:
-      return 'https://docs.altbot.io/editor/blocks/integrations/email'
-    case IntegrationBlockType.CHATWOOT:
-      return 'https://docs.altbot.io/editor/blocks/integrations/chatwoot'
-    case IntegrationBlockType.GOOGLE_ANALYTICS:
-      return 'https://docs.altbot.io/editor/blocks/integrations/ga'
-    case IntegrationBlockType.GOOGLE_SHEETS:
-      return 'https://docs.altbot.io/editor/blocks/integrations/google-sheets'
-    case IntegrationBlockType.ZAPIER:
-      return 'https://docs.altbot.io/editor/blocks/integrations/zapier'
-    case IntegrationBlockType.PABBLY_CONNECT:
-      return 'https://docs.altbot.io/editor/blocks/integrations/pabbly'
+    // case IntegrationBlockType.EMAIL:
+    //   return 'https://docs.altbot.io/editor/blocks/integrations/email'
+    // case IntegrationBlockType.CHATWOOT:
+    //   return 'https://docs.altbot.io/editor/blocks/integrations/chatwoot'
+    // case IntegrationBlockType.GOOGLE_ANALYTICS:
+    //   return 'https://docs.altbot.io/editor/blocks/integrations/ga'
+    // case IntegrationBlockType.GOOGLE_SHEETS:
+    //   return 'https://docs.altbot.io/editor/blocks/integrations/google-sheets'
+    // case IntegrationBlockType.ZAPIER:
+    //   return 'https://docs.altbot.io/editor/blocks/integrations/zapier'
+    // case IntegrationBlockType.PABBLY_CONNECT:
+    //   return 'https://docs.altbot.io/editor/blocks/integrations/pabbly'
     case IntegrationBlockType.WEBHOOK:
       return 'https://docs.altbot.io/editor/blocks/integrations/webhook'
     default:

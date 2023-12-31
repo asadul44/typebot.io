@@ -238,53 +238,53 @@ export const BlockSettings = ({
         />
       )
     }
-    case IntegrationBlockType.GOOGLE_SHEETS: {
-      return (
-        <GoogleSheetsSettings
-          options={block.options}
-          onOptionsChange={updateOptions}
-          blockId={block.id}
-        />
-      )
-    }
-    case IntegrationBlockType.GOOGLE_ANALYTICS: {
-      return (
-        <GoogleAnalyticsSettings
-          options={block.options}
-          onOptionsChange={updateOptions}
-        />
-      )
-    }
-    case IntegrationBlockType.ZAPIER: {
-      return <ZapierSettings block={block} onOptionsChange={updateOptions} />
-    }
-    case IntegrationBlockType.MAKE_COM: {
-      return <MakeComSettings block={block} onOptionsChange={updateOptions} />
-    }
-    case IntegrationBlockType.PABBLY_CONNECT: {
-      return (
-        <PabblyConnectSettings block={block} onOptionsChange={updateOptions} />
-      )
-    }
+    // case IntegrationBlockType.GOOGLE_SHEETS: {
+    //   return (
+    //     <GoogleSheetsSettings
+    //       options={block.options}
+    //       onOptionsChange={updateOptions}
+    //       blockId={block.id}
+    //     />
+    //   )
+    // }
+    // case IntegrationBlockType.GOOGLE_ANALYTICS: {
+    //   return (
+    //     <GoogleAnalyticsSettings
+    //       options={block.options}
+    //       onOptionsChange={updateOptions}
+    //     />
+    //   )
+    // }
+    // case IntegrationBlockType.ZAPIER: {
+    //   return <ZapierSettings block={block} onOptionsChange={updateOptions} />
+    // }
+    // case IntegrationBlockType.MAKE_COM: {
+    //   return <MakeComSettings block={block} onOptionsChange={updateOptions} />
+    // }
+    // case IntegrationBlockType.PABBLY_CONNECT: {
+    //   return (
+    //     <PabblyConnectSettings block={block} onOptionsChange={updateOptions} />
+    //   )
+    // }
     case IntegrationBlockType.WEBHOOK: {
       return <WebhookSettings block={block} onOptionsChange={updateOptions} />
     }
-    case IntegrationBlockType.EMAIL: {
-      return (
-        <SendEmailSettings
-          options={block.options}
-          onOptionsChange={updateOptions}
-        />
-      )
-    }
-    case IntegrationBlockType.CHATWOOT: {
-      return (
-        <ChatwootSettings
-          options={block.options}
-          onOptionsChange={updateOptions}
-        />
-      )
-    }
+    // case IntegrationBlockType.EMAIL: {
+    //   return (
+    //     <SendEmailSettings
+    //       options={block.options}
+    //       onOptionsChange={updateOptions}
+    //     />
+    //   )
+    // }
+    // case IntegrationBlockType.CHATWOOT: {
+    //   return (
+    //     <ChatwootSettings
+    //       options={block.options}
+    //       onOptionsChange={updateOptions}
+    //     />
+    //   )
+    // }
     case IntegrationBlockType.OPEN_AI: {
       return (
         <OpenAISettings

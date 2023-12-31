@@ -13,15 +13,15 @@ import {
   BubbleBlockContent,
   BubbleBlockType,
   defaultAudioBubbleContent,
-  defaultChatwootOptions,
+  // defaultChatwootOptions,
   defaultChoiceInputOptions,
   defaultConditionContent,
   defaultDateInputOptions,
   defaultEmailInputOptions,
   defaultEmbedBubbleContent,
   defaultFileInputOptions,
-  defaultGoogleAnalyticsOptions,
-  defaultGoogleSheetsOptions,
+  // defaultGoogleAnalyticsOptions,
+  // defaultGoogleSheetsOptions,
   defaultImageBubbleContent,
   defaultNumberInputOptions,
   defaultPaymentInputOptions,
@@ -29,7 +29,7 @@ import {
   defaultRatingInputOptions,
   defaultRedirectOptions,
   defaultScriptOptions,
-  defaultSendEmailOptions,
+  // defaultSendEmailOptions,
   defaultSetVariablesOptions,
   defaultTextBubbleContent,
   defaultTextInputOptions,
@@ -123,19 +123,19 @@ const parseDefaultBlockOptions = (type: BlockWithOptionsType): BlockOptions => {
       return {}
     case LogicBlockType.AB_TEST:
       return defaultAbTestOptions
-    case IntegrationBlockType.GOOGLE_SHEETS:
-      return defaultGoogleSheetsOptions
-    case IntegrationBlockType.GOOGLE_ANALYTICS:
-      return defaultGoogleAnalyticsOptions
-    case IntegrationBlockType.ZAPIER:
-    case IntegrationBlockType.PABBLY_CONNECT:
-    case IntegrationBlockType.MAKE_COM:
+    // case IntegrationBlockType.GOOGLE_SHEETS:
+    //   return defaultGoogleSheetsOptions
+    // case IntegrationBlockType.GOOGLE_ANALYTICS:
+    //   return defaultGoogleAnalyticsOptions
+    // case IntegrationBlockType.ZAPIER:
+    // case IntegrationBlockType.PABBLY_CONNECT:
+    // case IntegrationBlockType.MAKE_COM:
     case IntegrationBlockType.WEBHOOK:
       return defaultWebhookOptions
-    case IntegrationBlockType.EMAIL:
-      return defaultSendEmailOptions
-    case IntegrationBlockType.CHATWOOT:
-      return defaultChatwootOptions
+    // case IntegrationBlockType.EMAIL:
+    //   return defaultSendEmailOptions
+    // case IntegrationBlockType.CHATWOOT:
+    //   return defaultChatwootOptions
     case IntegrationBlockType.OPEN_AI:
       return {}
   }

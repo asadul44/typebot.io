@@ -150,34 +150,34 @@ export const BlockNodeContent = ({ block, indices }: Props): JSX.Element => {
       return <TypebotLinkNode block={block} />
     case LogicBlockType.CONDITION:
       return <ItemNodesList block={block} indices={indices} />
-    case IntegrationBlockType.GOOGLE_SHEETS: {
-      return (
-        <GoogleSheetsNodeContent
-          action={'action' in block.options ? block.options.action : undefined}
-        />
-      )
-    }
-    case IntegrationBlockType.GOOGLE_ANALYTICS: {
-      return <GoogleAnalyticsNodeBody action={block.options?.action} />
-    }
+    // case IntegrationBlockType.GOOGLE_SHEETS: {
+    //   return (
+    //     <GoogleSheetsNodeContent
+    //       action={'action' in block.options ? block.options.action : undefined}
+    //     />
+    //   )
+    // }
+    // case IntegrationBlockType.GOOGLE_ANALYTICS: {
+    //   return <GoogleAnalyticsNodeBody action={block.options?.action} />
+    // }
     case IntegrationBlockType.WEBHOOK: {
       return <WebhookContent block={block} />
     }
-    case IntegrationBlockType.ZAPIER: {
-      return <ZapierContent block={block} />
-    }
-    case IntegrationBlockType.PABBLY_CONNECT: {
-      return <PabblyConnectContent block={block} />
-    }
-    case IntegrationBlockType.MAKE_COM: {
-      return <MakeComContent block={block} />
-    }
-    case IntegrationBlockType.EMAIL: {
-      return <SendEmailContent block={block} />
-    }
-    case IntegrationBlockType.CHATWOOT: {
-      return <ChatwootNodeBody block={block} />
-    }
+    // case IntegrationBlockType.ZAPIER: {
+    //   return <ZapierContent block={block} />
+    // }
+    // case IntegrationBlockType.PABBLY_CONNECT: {
+    //   return <PabblyConnectContent block={block} />
+    // }
+    // case IntegrationBlockType.MAKE_COM: {
+    //   return <MakeComContent block={block} />
+    // }
+    // case IntegrationBlockType.EMAIL: {
+    //   return <SendEmailContent block={block} />
+    // }
+    // case IntegrationBlockType.CHATWOOT: {
+    //   return <ChatwootNodeBody block={block} />
+    // }
     case IntegrationBlockType.OPEN_AI: {
       return (
         <OpenAINodeBody

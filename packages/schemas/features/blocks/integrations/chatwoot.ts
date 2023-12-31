@@ -21,7 +21,7 @@ export const chatwootOptionsSchema = z.object({
 
 export const chatwootBlockSchema = blockBaseSchema.merge(
   z.object({
-    type: z.enum([IntegrationBlockType.CHATWOOT]),
+    // type: z.enum([IntegrationBlockType.CHATWOOT]),
     options: chatwootOptionsSchema,
   })
 )

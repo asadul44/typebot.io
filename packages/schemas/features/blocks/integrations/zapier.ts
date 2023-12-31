@@ -5,7 +5,7 @@ import { webhookOptionsSchema } from './webhook'
 
 export const zapierBlockSchema = blockBaseSchema.merge(
   z.object({
-    type: z.enum([IntegrationBlockType.ZAPIER]),
+    // type: z.enum([IntegrationBlockType.ZAPIER]),
     options: webhookOptionsSchema,
     webhookId: z.string(),
   })

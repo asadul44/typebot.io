@@ -74,7 +74,7 @@ export const googleSheetsOptionsSchema = z.discriminatedUnion('action', [
 
 export const googleSheetsBlockSchema = blockBaseSchema.merge(
   z.object({
-    type: z.enum([IntegrationBlockType.GOOGLE_SHEETS]),
+    // type: z.enum([IntegrationBlockType.GOOGLE_SHEETS]),
     options: googleSheetsOptionsSchema,
   })
 )

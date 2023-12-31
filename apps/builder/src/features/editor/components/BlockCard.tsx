@@ -73,20 +73,20 @@ export const BlockCard = (
           <BlockLabel type={props.type} />
         </BlockCardLayout>
       )
-    case IntegrationBlockType.GOOGLE_SHEETS:
-      return (
-        <BlockCardLayout {...props} tooltip="Google Sheets">
-          <BlockIcon type={props.type} />
-          <BlockLabel type={props.type} />
-        </BlockCardLayout>
-      )
-    case IntegrationBlockType.GOOGLE_ANALYTICS:
-      return (
-        <BlockCardLayout {...props} tooltip="Google Analytics">
-          <BlockIcon type={props.type} />
-          <BlockLabel type={props.type} />
-        </BlockCardLayout>
-      )
+    // case IntegrationBlockType.GOOGLE_SHEETS:
+    //   return (
+    //     <BlockCardLayout {...props} tooltip="Google Sheets">
+    //       <BlockIcon type={props.type} />
+    //       <BlockLabel type={props.type} />
+    //     </BlockCardLayout>
+    //   )
+    // case IntegrationBlockType.GOOGLE_ANALYTICS:
+    //   return (
+    //     <BlockCardLayout {...props} tooltip="Google Analytics">
+    //       <BlockIcon type={props.type} />
+    //       <BlockLabel type={props.type} />
+    //     </BlockCardLayout>
+    //   )
     default:
       return (
         <BlockCardLayout {...props}>

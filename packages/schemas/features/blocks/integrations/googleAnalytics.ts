@@ -14,7 +14,7 @@ export const googleAnalyticsOptionsSchema = z.object({
 
 export const googleAnalyticsBlockSchema = blockBaseSchema.merge(
   z.object({
-    type: z.enum([IntegrationBlockType.GOOGLE_ANALYTICS]),
+    // type: z.enum([IntegrationBlockType.GOOGLE_ANALYTICS]),
     options: googleAnalyticsOptionsSchema,
   })
 )
