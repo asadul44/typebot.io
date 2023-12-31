@@ -139,15 +139,15 @@ export type LogicBlockOptions = LogicBlock extends
   : never
 
 export const integrationBlockSchema = z.discriminatedUnion('type', [
-  chatwootBlockSchema,
-  googleAnalyticsBlockSchema,
-  googleSheetsBlockSchema,
-  makeComBlockSchema,
+  // chatwootBlockSchema,
+  // googleAnalyticsBlockSchema,
+  // googleSheetsBlockSchema,
+  // makeComBlockSchema,
   openAIBlockSchema,
-  pabblyConnectBlockSchema,
-  sendEmailBlockSchema,
+  // pabblyConnectBlockSchema,
+  // sendEmailBlockSchema,
   webhookBlockSchema,
-  zapierBlockSchema,
+  // zapierBlockSchema,
 ])
 
 export type IntegrationBlock = z.infer<typeof integrationBlockSchema>

@@ -59,22 +59,22 @@ export const BlockLabel = ({ type }: Props): JSX.Element => {
       return <Text>Jump</Text>
     case LogicBlockType.AB_TEST:
       return <Text>AB Test</Text>
-    case IntegrationBlockType.GOOGLE_SHEETS:
-      return <Text>Sheets</Text>
-    case IntegrationBlockType.GOOGLE_ANALYTICS:
-      return <Text>Analytics</Text>
+    // case IntegrationBlockType.GOOGLE_SHEETS:
+    //   return <Text>Sheets</Text>
+    // case IntegrationBlockType.GOOGLE_ANALYTICS:
+    //   return <Text>Analytics</Text>
     case IntegrationBlockType.WEBHOOK:
       return <Text>Webhook</Text>
-    case IntegrationBlockType.ZAPIER:
-      return <Text>Zapier</Text>
-    case IntegrationBlockType.MAKE_COM:
-      return <Text>Make.com</Text>
-    case IntegrationBlockType.PABBLY_CONNECT:
-      return <Text>Pabbly</Text>
-    case IntegrationBlockType.EMAIL:
-      return <Text>Email</Text>
-    case IntegrationBlockType.CHATWOOT:
-      return <Text>Chatwoot</Text>
+    // case IntegrationBlockType.ZAPIER:
+    //   return <Text>Zapier</Text>
+    // case IntegrationBlockType.MAKE_COM:
+    //   return <Text>Make.com</Text>
+    // case IntegrationBlockType.PABBLY_CONNECT:
+    //   return <Text>Pabbly</Text>
+    // case IntegrationBlockType.EMAIL:
+    //   return <Text>Email</Text>
+    // case IntegrationBlockType.CHATWOOT:
+    //   return <Text>Chatwoot</Text>
     case IntegrationBlockType.OPEN_AI:
       return <Text>OpenAI</Text>
   }
