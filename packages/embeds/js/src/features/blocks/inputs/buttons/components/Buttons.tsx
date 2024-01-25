@@ -34,7 +34,7 @@ export const Buttons = (props: Props) => {
               on:click={handleClick(index())}
               data-itemid={item.id}
               class="w-full"
-              variant={selectedIds().has(index()) ? undefined : 'primary'}
+              variant={selectedIds().has(index()) ? 'guest-bubble' : 'default'}
             >
               {item.content}
             </Button>

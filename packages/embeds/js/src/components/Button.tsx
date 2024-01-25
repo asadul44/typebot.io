@@ -2,7 +2,7 @@ import { children, JSX, Show, splitProps } from 'solid-js'
 import { Spinner } from './Spinner'
 
 type Props = {
-  variant?: 'primary' | 'secondary' | 'warning'
+  variant?: 'primary' | 'secondary' | 'guest-bubble' | 'default'
   children: JSX.Element
   isDisabled?: boolean
   isLoading?: boolean
@@ -14,12 +14,10 @@ export const Button = (props: Props) => {
 
   const getButtonClass = () => {
     switch (props?.variant) {
-      case 'primary':
-        return 'primary-button'
+      case 'guest-bubble':
+        return 'typebot-guest-bubble'
       case 'secondary':
         return 'secondary-button'
-      case 'warning':
-        return 'warning-button'
       default:
         return 'typebot-button'
     }
