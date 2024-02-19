@@ -7,6 +7,7 @@ workspace.code-workspace
 .turbo
 authenticatedState.json
 playwright-report
+dist
 test-results
 **/src/test/results
 **/src/test/reporters
