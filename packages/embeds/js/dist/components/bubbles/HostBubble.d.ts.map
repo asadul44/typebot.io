@@ -1,0 +1,1 @@
+{"version":3,"file":"HostBubble.d.ts","sourceRoot":"","sources":["../../../src/components/bubbles/HostBubble.tsx"],"names":[],"mappings":"AAKA,OAAO,KAAK,EAEV,WAAW,EAIX,eAAe,EAEhB,MAAM,qBAAqB,CAAA;AAI5B,KAAK,KAAK,GAAG;IACX,OAAO,EAAE,WAAW,CAAA;IACpB,eAAe,EAAE,eAAe,CAAA;IAChC,eAAe,EAAE,MAAM,IAAI,CAAA;CAC5B,CAAA;AAED,eAAO,MAAM,UAAU,UAAW,KAAK,mCAwCtC,CAAA"}
