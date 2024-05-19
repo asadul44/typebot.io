@@ -13,7 +13,8 @@ import { saveStateToDatabase } from '../saveStateToDatabase'
 import prisma from '@typebot.io/lib/prisma'
 import { isDefined } from '@typebot.io/lib/utils'
 import { Reply } from '../types'
-import { setChatSessionHasReplying } from '../queries/setChatSessionHasReplying'
+import { setIsReplyingInChatSession } from '../queries/setIsReplyingInChatSession'
+import { removeIsReplyingInChatSession } from '../queries/removeIsReplyingInChatSession'
 
 type Props = {
   receivedMessage: WhatsAppIncomingMessage
@@ -75,7 +76,7 @@ export const resumeWhatsAppFlow = async ({
     }
   }
 
-  await setChatSessionHasReplying({
+  await setIsReplyingInChatSession({
     existingSessionId: session?.id,
     newSessionId: sessionId,
   })
@@ -101,6 +102,7 @@ export const resumeWhatsAppFlow = async ({
       : { error: 'workspaceId not found' }
 
   if ('error' in resumeResponse) {
+    await removeIsReplyingInChatSession(sessionId)
     console.log('Chat not starting:', resumeResponse.error)
     return {
       message: 'Message received',
@@ -114,6 +116,7 @@ export const resumeWhatsAppFlow = async ({
     messages,
     clientSideActions,
     visitedEdges,
+    setVariableHistory,
   } = resumeResponse
 
   const isFirstChatChunk = (!session || isSessionExpired) ?? false
@@ -140,6 +143,7 @@ export const resumeWhatsAppFlow = async ({
       },
     },
     visitedEdges,
+    setVariableHistory,
   })
 
   return {
