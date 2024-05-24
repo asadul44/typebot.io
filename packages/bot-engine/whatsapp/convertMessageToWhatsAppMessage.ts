@@ -17,6 +17,8 @@ export const convertMessageToWhatsAppMessage = (
 ): WhatsAppSendingMessage | null => {
   switch (message.type) {
     case BubbleBlockType.TEXT: {
+      if (message.content.type === 'markdown')
+        throw new Error('Expect rich text message')
       if (!message.content.richText || message.content.richText.length === 0)
         return null
       return {
@@ -69,8 +71,8 @@ export const convertMessageToWhatsAppMessage = (
                 message.content.type as EmbeddableVideoBubbleContentType
               ]
             }/${message.content.id}`,
+            preview_url: true,
           },
-          preview_url: true,
         }
       return null
     }
@@ -80,8 +82,8 @@ export const convertMessageToWhatsAppMessage = (
         type: 'text',
         text: {
           body: message.content.url,
+          preview_url: true,
         },
-        preview_url: true,
       }
     }
     case 'custom-embed': {
@@ -90,8 +92,8 @@ export const convertMessageToWhatsAppMessage = (
         type: 'text',
         text: {
           body: message.content.url,
+          preview_url: true,
         },
-        preview_url: true,
       }
     }
   }
