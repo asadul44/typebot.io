@@ -127,7 +127,8 @@
                 "editor/blocks/integrations/anthropic",
                 "editor/blocks/integrations/dify-ai",
                 "editor/blocks/integrations/nocodb",
-                "editor/blocks/integrations/segment"
+                "editor/blocks/integrations/segment",
+                "editor/blocks/integrations/zendesk"
               ]
             }
           ]
@@ -205,7 +206,8 @@
         "guides/mailer-lite",
         "guides/multi-avatars",
         "guides/rtl",
-        "guides/utm-in-results"
+        "guides/utm-in-results",
+        "guides/how-to-create-loops"
       ]
     },
     {
@@ -231,6 +233,10 @@
     {
       "group": "Guides",
       "pages": ["self-hosting/guides/s3", "self-hosting/guides/planetscale"]
+    },
+    {
+      "group": "Misc",
+      "pages": ["self-hosting/breaking-changes"]
     },
     {
       "group": "Get started",
