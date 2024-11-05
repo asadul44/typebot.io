@@ -31,12 +31,11 @@ export const UpdateForgedCredentialsModalContent = ({
   const { workspace } = useWorkspace();
   const { showToast } = useToast();
   const [name, setName] = useState("");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>();
 
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const { data: existingCredentials } =
+  const { data: existingCredentials, refetch: refetchCredentials } =
     trpc.credentials.getCredentials.useQuery(
       {
         workspaceId: workspace?.id as string,
@@ -64,6 +63,7 @@ export const UpdateForgedCredentialsModalContent = ({
     },
     onSuccess: () => {
       onUpdate();
+      refetchCredentials();
     },
   });
 
@@ -82,6 +82,7 @@ export const UpdateForgedCredentialsModalContent = ({
   };
 
   if (!blockDef.auth) return null;
+
   return (
     <ModalContent>
       <ModalHeader>Update {blockDef.auth.name}</ModalHeader>
@@ -97,11 +98,13 @@ export const UpdateForgedCredentialsModalContent = ({
             withVariableButton={false}
             debounceTimeout={0}
           />
-          <ZodObjectLayout
-            schema={blockDef.auth.schema}
-            data={data}
-            onDataChange={setData}
-          />
+          {data && (
+            <ZodObjectLayout
+              schema={blockDef.auth.schema}
+              data={data}
+              onDataChange={setData}
+            />
+          )}
         </ModalBody>
 
         <ModalFooter>

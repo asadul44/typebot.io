@@ -552,4 +552,4 @@ export const taxIdTypes = [
     emoji: "🇿🇦",
     placeholder: "1234567890",
   },
-];
+] as const;

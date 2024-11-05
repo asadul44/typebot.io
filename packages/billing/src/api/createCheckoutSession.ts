@@ -5,6 +5,7 @@ import type { User } from "@typebot.io/schemas/features/user/schema";
 import { isAdminWriteWorkspaceForbidden } from "@typebot.io/workspaces/isAdminWriteWorkspaceForbidden";
 import Stripe from "stripe";
 import { createCheckoutSessionUrl } from "../helpers/createCheckoutSessionUrl";
+import type { taxIdTypes } from "../taxIdTypes";
 
 type Props = {
   workspaceId: string;
@@ -62,7 +63,7 @@ export const createCheckoutSession = async ({
     });
 
   const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
-    apiVersion: "2022-11-15",
+    apiVersion: "2024-09-30.acacia",
   });
 
   await prisma.user.updateMany({
@@ -78,6 +79,10 @@ export const createCheckoutSession = async ({
     email,
     name: company,
     metadata: { workspaceId },
+    tax_exempt:
+      !vat || vat.value.startsWith("FR") || vat?.type !== "eu_vat"
+        ? undefined
+        : "exempt",
     tax_id_data: vat
       ? [vat as Stripe.CustomerCreateParams.TaxIdDatum]
       : undefined,
