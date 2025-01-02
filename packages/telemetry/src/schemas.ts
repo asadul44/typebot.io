@@ -43,6 +43,12 @@ const userLoggedInEventSchema = userEvent.merge(
   }),
 );
 
+const userLoggedOutEventSchema = userEvent.merge(
+  z.object({
+    name: z.literal("User logged out"),
+  }),
+);
+
 const userUpdatedEventSchema = userEvent.merge(
   z.object({
     name: z.literal("User updated"),
@@ -174,12 +180,25 @@ export const visitedAnalyticsEventSchema = typebotEvent.merge(
   }),
 );
 
+export const limitFirstEmailSentEventSchema = workspaceEvent.merge(
+  z.object({
+    name: z.literal("Limit warning email sent"),
+  }),
+);
+
+export const limitSecondEmailSentEventSchema = workspaceEvent.merge(
+  z.object({
+    name: z.literal("Limit reached email sent"),
+  }),
+);
+
 export const clientSideEvents = [removedBrandingEventSchema] as const;
 
 export const eventSchema = z.discriminatedUnion("name", [
   workspaceCreatedEventSchema,
   userCreatedEventSchema,
   userLoggedInEventSchema,
+  userLoggedOutEventSchema,
   typebotCreatedEventSchema,
   publishedTypebotEventSchema,
   subscriptionUpdatedEventSchema,
@@ -195,6 +214,8 @@ export const eventSchema = z.discriminatedUnion("name", [
   createdFolderEventSchema,
   publishedFileUploadBlockEventSchema,
   visitedAnalyticsEventSchema,
+  limitFirstEmailSentEventSchema,
+  limitSecondEmailSentEventSchema,
   ...clientSideEvents,
 ]);
 

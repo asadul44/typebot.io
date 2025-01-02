@@ -8,10 +8,12 @@ import prisma from "@typebot.io/prisma";
 import { Plan } from "@typebot.io/prisma/enum";
 import { computeRiskLevel } from "@typebot.io/radar";
 import { settingsSchema } from "@typebot.io/settings/schemas";
+import type { TelemetryEvent } from "@typebot.io/telemetry/schemas";
 import { trackEvents } from "@typebot.io/telemetry/trackEvents";
 import { themeSchema } from "@typebot.io/theme/schemas";
 import { edgeSchema } from "@typebot.io/typebot/schemas/edge";
 import { startEventSchema } from "@typebot.io/typebot/schemas/events/start/schema";
+import { typebotV6Schema } from "@typebot.io/typebot/schemas/typebot";
 import { variableSchema } from "@typebot.io/variables/schemas";
 import { z } from "@typebot.io/zod";
 import { isWriteTypebotForbidden } from "../helpers/isWriteTypebotForbidden";
@@ -98,7 +100,7 @@ export const publishTypebot = authenticatedProcedure
 
     const riskLevel = typebotWasVerified
       ? 0
-      : computeRiskLevel(existingTypebot, {
+      : await computeRiskLevel(typebotV6Schema.parse(existingTypebot), {
           debug: env.NODE_ENV === "development",
         });
 
@@ -134,7 +136,7 @@ export const publishTypebot = authenticatedProcedure
       }
     }
 
-    const publishEvents = await parseTypebotPublishEvents({
+    const publishEvents: TelemetryEvent[] = await parseTypebotPublishEvents({
       existingTypebot,
       userId: user.id,
       hasFileUploadBlocks,
@@ -161,7 +163,7 @@ export const publishTypebot = authenticatedProcedure
           theme: themeSchema.parse(existingTypebot.theme),
         },
       });
-    else
+    else {
       await prisma.publicTypebot.createMany({
         data: {
           version: existingTypebot.version,
@@ -180,10 +182,7 @@ export const publishTypebot = authenticatedProcedure
           theme: themeSchema.parse(existingTypebot.theme),
         },
       });
-
-    await trackEvents([
-      ...publishEvents,
-      {
+      publishEvents.push({
         name: "Typebot published",
         workspaceId: existingTypebot.workspaceId,
         typebotId: existingTypebot.id,
@@ -192,8 +191,10 @@ export const publishTypebot = authenticatedProcedure
           name: existingTypebot.name,
           isFirstPublish: existingTypebot.publishedTypebot ? undefined : true,
         },
-      },
-    ]);
+      });
+    }
+
+    await trackEvents(publishEvents);
 
     return { message: "success" };
   });

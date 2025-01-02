@@ -94,16 +94,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           timestamp: new Date().toISOString(),
           type: "webhook",
           webhook: {
-            data:
-              typeof req.body === "string"
-                ? JSON.stringify({ data: JSON.parse(req.body) })
-                : JSON.stringify({ data: req.body }, null, 2),
+            data: parseBodyForWhatsApp(req),
           },
         },
         workspaceId: typebot.workspace.id,
         sessionId: chatSession.id,
         credentialsId: typebot.whatsAppCredentialsId,
-        origin: "webhook",
+        callFrom: "webhook",
       });
       return res.status(200).send("OK");
     }
@@ -113,10 +110,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         { host: env.NEXT_PUBLIC_PARTYKIT_HOST, room: `${resultId}/webhooks` },
         {
           method: "POST",
-          body:
-            typeof req.body === "string"
-              ? req.body
-              : JSON.stringify(req.body, null, 2),
+          body: parseBody(req),
         },
       );
     } catch (error) {
@@ -128,5 +122,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   return methodNotAllowed(res);
 };
+
+function parseBodyForWhatsApp(req: NextApiRequest): string | undefined {
+  if (!req.body) return;
+  return typeof req.body === "string"
+    ? JSON.stringify({ data: JSON.parse(req.body) })
+    : JSON.stringify({ data: req.body }, null, 2);
+}
+
+function parseBody(req: NextApiRequest): string | undefined {
+  if (!req.body) return;
+  return typeof req.body === "string"
+    ? req.body
+    : JSON.stringify(req.body, null, 2);
+}
 
 export default handler;

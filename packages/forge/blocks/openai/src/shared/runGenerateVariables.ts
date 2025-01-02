@@ -51,7 +51,7 @@ export const runGenerateVariables = async ({
     if (value === null) return;
     const existingVariable = variables.find((v) => v.name === key);
     if (!existingVariable) return;
-    variablesStore.set(existingVariable.id, value);
+    variablesStore.set([{ id: existingVariable.id, value }]);
   });
 };
 
@@ -89,7 +89,7 @@ const convertVariablesToExtractToSchema = ({
       }
     }
     if (variableToExtract.isRequired === false)
-      shape[matchingVariable.name] = shape[matchingVariable.name]!.optional();
+      shape[matchingVariable.name] = shape[matchingVariable.name]!.nullish();
 
     if (isNotEmpty(variableToExtract.description))
       shape[matchingVariable.name] = shape[matchingVariable.name]!.describe(
